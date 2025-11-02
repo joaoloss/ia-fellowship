@@ -13,9 +13,11 @@ dependencies = [
 [package.dev-dependencies]
 dev = [
     { name = "dotenv" },
+    { name = "editdistance" },
     { name = "ipykernel" },
     { name = "pdfminer-six" },
     { name = "pydantic" },
+    { name = "python-dateutil" },
     { name = "pyyaml" },
 ]
 
@@ -25,9 +27,11 @@ requires-dist = [{ name = "openai", specifier = ">=2.6.1" }]
 [package.metadata.requires-dev]
 dev = [
     { name = "dotenv", specifier = ">=0.9.9" },
+    { name = "editdistance", specifier = ">=0.8.1" },
     { name = "ipykernel", specifier = ">=7.1.0" },
     { name = "pdfminer-six", specifier = ">=20250506" },
     { name = "pydantic", specifier = ">=2.12.3" },
+    { name = "python-dateutil", specifier = ">=2.9.0.post0" },
     { name = "pyyaml", specifier = ">=6.0.3" },
 ]
 
@@ -285,6 +289,12 @@ dependencies = [
 wheels = [
     { url = "https://files.pythonhosted.org/packages/b2/b7/545d2c10c1fc15e48653c91efde329a790f2eecfbbf2bd16003b5db2bab0/dotenv-0.9.9-py2.py3-none-any.whl", hash = "sha256:29cf74a087b31dafdb5a446b6d7e11cbce8ed2741540e2339c69fbef92c94ce9", size = 1892, upload-time = "2025-02-19T22:15:01.647Z" },
 ]
+
+[[package]]
+name = "editdistance"
+version = "0.8.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d5/18/9f4f975ca87a390832b1c22478f3702fcdf739f83211e24d054b7551270d/editdistance-0.8.1.tar.gz", hash = "sha256:d1cdf80a5d5014b0c9126a69a42ce55a457b457f6986ff69ca98e4fe4d2d8fed", size = 50006, upload-time = "2024-02-10T07:44:53.914Z" }
 
 [[package]]
 name = "executing"

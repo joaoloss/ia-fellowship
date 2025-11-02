@@ -11,10 +11,13 @@
             "telefone_profissional": null,
             "situacao": "SITUAÇÃO REGULAR"
         },
-        "latency_seconds": 5.21,
-        "total_tokens": 1571,
-        "input_tokens": 1468,
-        "output_tokens": 103
+        "latency_seconds": 7.37,
+        "total_tokens": 1574,
+        "input_tokens": 1471,
+        "output_tokens": 103,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "5.737500e-04"
     },
     {
         "pdf_path": "oab_2.pdf",
@@ -24,13 +27,16 @@
             "seccional": "PR",
             "subsecao": "CONSELHO SECCIONAL - PARANÁ",
             "categoria": "SUPLEMENTAR",
-            "endereco_profissional": "AVENIDA PAULISTA, Nº 2300 andar Pilotis, Bela Vista SÃO PAULO - SP 01310300",
+            "endereco_profissional": "AVENIDA PAULISTA, Nº 2300 andar Pilotis, Bela Vista\nSÃO PAULO - SP\n01310300",
             "situacao": "SITUAÇÃO REGULAR"
         },
-        "latency_seconds": 5.49,
-        "total_tokens": 1543,
-        "input_tokens": 1441,
-        "output_tokens": 102
+        "latency_seconds": 5.83,
+        "total_tokens": 1547,
+        "input_tokens": 1444,
+        "output_tokens": 103,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "5.670000e-04"
     },
     {
         "pdf_path": "oab_3.pdf",
@@ -43,15 +49,18 @@
             "telefone_profissional": null,
             "situacao": "SITUAÇÃO REGULAR"
         },
-        "latency_seconds": 3.78,
-        "total_tokens": 1475,
-        "input_tokens": 1407,
-        "output_tokens": 68
+        "latency_seconds": 4.05,
+        "total_tokens": 1478,
+        "input_tokens": 1410,
+        "output_tokens": 68,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "4.885000e-04"
     },
     {
         "pdf_path": "tela_sistema_1.pdf",
         "result": {
-            "data_base": "03/09/2025",
+            "data_base": "05/09/2025",
             "data_vencimento": "12/10/2025",
             "quantidade_parcelas": null,
             "produto": null,
@@ -59,10 +68,13 @@
             "tipo_de_operacao": null,
             "tipo_de_sistema": null
         },
-        "latency_seconds": 4.34,
-        "total_tokens": 1526,
-        "input_tokens": 1459,
-        "output_tokens": 67
+        "latency_seconds": 3.52,
+        "total_tokens": 1529,
+        "input_tokens": 1462,
+        "output_tokens": 67,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "4.995000e-04"
     },
     {
         "pdf_path": "tela_sistema_2.pdf",
@@ -73,10 +85,13 @@
             "valor_parcela": "2.372,64",
             "cidade": "Mozarlândia"
         },
-        "latency_seconds": 5.3,
-        "total_tokens": 1456,
-        "input_tokens": 1408,
-        "output_tokens": 48
+        "latency_seconds": 16.9,
+        "total_tokens": 1459,
+        "input_tokens": 1411,
+        "output_tokens": 48,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "4.487500e-04"
     },
     {
         "pdf_path": "tela_sistema_3.pdf",
@@ -85,9 +100,12 @@
             "selecao_de_parcelas": null,
             "total_de_parcelas": "96"
         },
-        "latency_seconds": 2.13,
-        "total_tokens": 1492,
-        "input_tokens": 1451,
-        "output_tokens": 41
+        "latency_seconds": 3.38,
+        "total_tokens": 1495,
+        "input_tokens": 1454,
+        "output_tokens": 41,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "4.455000e-04"
     }
 ]

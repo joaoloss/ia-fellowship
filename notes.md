@@ -16,7 +16,6 @@
 
 1. Adding `reasoning={"effort": "minimal"}` improved significantly: from ~20s to ~3s and from ~1600 total used tokens to ~320 total used tokens.
     - Obs.: the default is value is `medium`.
-
-2. Sending the PDF file to LLM (via base64) instead of the text of the PDF in prompt: ~2.5x more time and ~2.4x more tokens.
-
-3. Passing the `extraction_schema` as YAML instead of JSON helped reduce the number of input_tokens, but not significantly.
+2. Sending the PDF file to LLM (via base64) instead of the text of the PDF in prompt: ~2.5x more time, ~2.4x more tokens and ~2x more cost.
+3. Passing the PDF text in a matrix format (preserving the PDF layout) showed improved accuracy compared to using the raw text, although it slightly increased token usage.
+4. Passing the `extraction_schema` as YAML instead of JSON helped reduce the number of input_tokens, but not significantly.

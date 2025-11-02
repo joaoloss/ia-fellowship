@@ -11,7 +11,7 @@
             "telefone_profissional": null,
             "situacao": "regular"
         },
-        "latency_seconds": 3.49,
+        "latency_seconds": 2.87,
         "total_tokens": 676,
         "input_tokens": 593,
         "output_tokens": 83,
@@ -22,40 +22,50 @@
     {
         "pdf_path": "oab_2.pdf",
         "result": {
-            "nome": "luis filipe araujo amaral",
+            "nome": [
+                "luis filipe araujo amaral"
+            ],
             "inscricao": "101943",
             "seccional": "pr",
             "subsecao": "conselho seccional - paraná",
-            "categoria": "SUPLEMENTAR",
-            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista\nsão paulo - sp\n01310300",
-            "situacao": "regular"
+            "categoria": [
+                "suplementar"
+            ],
+            "endereco_profissional": [
+                "avenida paulista, nº 2300 andar pilotis, bela vista\nsão paulo - sp"
+            ],
+            "situacao": "situação regular"
         },
-        "latency_seconds": 2.24,
-        "total_tokens": 651,
-        "input_tokens": 560,
-        "output_tokens": 91,
+        "latency_seconds": 1.24,
+        "total_tokens": 359,
+        "input_tokens": 340,
+        "output_tokens": 19,
         "cached_tokens": 0,
         "reasoning_tokens": 0,
-        "estimated_cost_usd": "3.220000e-04"
+        "estimated_cost_usd": "1.230000e-04"
     },
     {
         "pdf_path": "oab_3.pdf",
         "result": {
-            "nome": "son goku",
+            "nome": [
+                "son goku"
+            ],
             "inscricao": "101943",
             "seccional": "pr",
             "subsecao": null,
-            "categoria": "SUPLEMENTAR",
+            "categoria": [
+                "suplementar"
+            ],
             "telefone_profissional": null,
             "situacao": "regular"
         },
-        "latency_seconds": 2.38,
-        "total_tokens": 580,
-        "input_tokens": 527,
-        "output_tokens": 53,
+        "latency_seconds": 1.45,
+        "total_tokens": 365,
+        "input_tokens": 342,
+        "output_tokens": 23,
         "cached_tokens": 0,
         "reasoning_tokens": 0,
-        "estimated_cost_usd": "2.377500e-04"
+        "estimated_cost_usd": "1.315000e-04"
     },
     {
         "pdf_path": "tela_sistema_1.pdf",
@@ -68,7 +78,7 @@
             "tipo_de_operacao": null,
             "tipo_de_sistema": null
         },
-        "latency_seconds": 3.19,
+        "latency_seconds": 1.64,
         "total_tokens": 639,
         "input_tokens": 577,
         "output_tokens": 62,
@@ -85,7 +95,7 @@
             "valor_parcela": "2.372,64",
             "cidade": "mozarlândia"
         },
-        "latency_seconds": 1.71,
+        "latency_seconds": 1.88,
         "total_tokens": 589,
         "input_tokens": 542,
         "output_tokens": 47,
@@ -100,7 +110,7 @@
             "selecao_de_parcelas": null,
             "total_de_parcelas": "96"
         },
-        "latency_seconds": 1.62,
+        "latency_seconds": 2.84,
         "total_tokens": 633,
         "input_tokens": 592,
         "output_tokens": 41,

@@ -1,18 +1,35 @@
 from pdfminer.high_level import extract_pages
 from pdfminer.layout import LTTextBoxHorizontal
+import re
 import os
 import json
+import editdistance
 
 class PDF2Matrix:
     def __init__(self, pdf_path):
         self.pdf_path = pdf_path
     
-    def get_matrix(self):
+    def get_matrix(self) -> list[list[str]]:
         boxes = self.__extract_text_boxes_split()
         rows = self.__group_into_rows(boxes)
         rows = self.__sort_row_items(rows)
-        pdf_mat = self.__rows_to_matrix(rows)
-        return pdf_mat
+        self.__pdf_mat = self.__rows_to_matrix(rows)
+        return self.__pdf_mat
+
+    def get_position_of_text(self, text: str) -> tuple[int, int] | None:
+        text = text.strip().lower()
+        text = re.sub(r"\s+", " ", text) # normalize spaces
+        for row_index, row in enumerate(self.__pdf_mat):
+            # Verify fuzzy match for the entire row (also handles 1D rows)
+            row_str = " ".join(row).lower()
+            if editdistance.eval(row_str, text) / max(len(row_str), len(text)) < 0.2: # fuzzy match
+                return (row_index, -1)  # Return the position as (row, col)
+
+            for col_index, col in enumerate(row):
+                if col == text:
+                    return (row_index, col_index)  # Return the position as (row, col)
+        return None
+            
 
     def __extract_text_boxes_split(self):
         boxes = list()
