@@ -1,0 +1,75 @@
+[
+    {
+        "label": "carteira_oab",
+        "output": {
+            "nome": "joana d'arc",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300, andar pilotis, bela vista, são paulo - sp, 01310300",
+            "telefone_profissional": null,
+            "situacao": "situação regular"
+        },
+        "pdf_path": "oab_1.pdf"
+    },
+    {
+        "label": "carteira_oab",
+        "output": {
+            "nome": "luis filipe araujo amaral",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300, andar pilotis, bela vista, são paulo - sp, 01310300",
+            "situacao": "situação regular"
+        },
+        "pdf_path": "oab_2.pdf"
+    },
+    {
+        "label": "carteira_oab",
+        "output": {
+            "nome": "son goku",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "telefone_profissional": null,
+            "situacao": "situação regular"
+        },
+        "pdf_path": "oab_3.pdf"
+    },
+    {
+        "label": "tela_sistema",
+        "output": {
+            "data_base": null,
+            "data_vencimento": null,
+            "quantidade_parcelas": null,
+            "produto": null,
+            "sistema": "consignado",
+            "tipo_de_operacao": null,
+            "tipo_de_sistema": null
+        },
+        "pdf_path": "tela_sistema_1.pdf"
+    },
+    {
+        "label": "tela_sistema",
+        "output": {
+            "pesquisa_por": "cliente",
+            "pesquisa_tipo": "cpf",
+            "sistema": "consignado",
+            "valor_parcela": "2.372,64",
+            "cidade": "mozarlândia"
+        },
+        "pdf_path": "tela_sistema_2.pdf"
+    },
+    {
+        "label": "tela_sistema",
+        "output": {
+            "data_referencia": null,
+            "selecao_de_parcelas": null,
+            "total_de_parcelas": "96"
+        },
+        "pdf_path": "tela_sistema_3.pdf"
+    }
+]

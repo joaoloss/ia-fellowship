@@ -1,0 +1,57 @@
+Pesquisar por:
+CLIENTE
+
+Tipo:
+CPF
+
+Operação Selecionada
+
+Consulta de Cobrança
+
+Sistema:
+Todos
+
+Contrato:
+Todos
+
+V
+
+Buscar
+
+Sistema
+CONSIGNADO
+
+VIr. Parc.
+2.372,64
+
+Cidade: Mozarlândia U.F .: GO CEP: 76709970
+
+Dados para Contato
+
+Resumo
+
+Cobradora
+Telefone da
+Cobradora
+
+Negativado SERASA?
+Negativado SPC?
+
+Status Jurídico
+
+Status Notificação
+
+Nenhuma
+
+Nenhum
+
+Não
+Não
+Nenhum
+Nenhum
+
+
+
+====
+
+pesquisar por: cliente tipo: cpf operação selecionada consulta de cobrança sistema: todos contrato: todos v buscar sistema consignado vir. parc. 2.372,64 cidade: mozarlândia u.f .: go cep: 76709970 dados para contato resumo cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação nenhuma nenhum não não nenhum nenhum

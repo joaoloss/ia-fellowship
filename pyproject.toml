@@ -1,0 +1,18 @@
+[project]
+name = "ai-fellowship"
+version = "0.1.0"
+description = "This project is part of ai-fellowship program promoted by Enter"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "openai>=2.6.1",
+]
+
+[dependency-groups]
+dev = [
+    "dotenv>=0.9.9",
+    "ipykernel>=7.1.0",
+    "pdfminer-six>=20250506",
+    "pydantic>=2.12.3",
+    "pyyaml>=6.0.3",
+]

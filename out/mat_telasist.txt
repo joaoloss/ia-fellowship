@@ -1,0 +1,42 @@
+=====> files/tela_sistema_1.pdf
+['Consulta de Cobrança']
+['Detalhamento de saldos por parcelas:', 'Data Referência: 05/09/2025', '<< Esconder Filtros']
+['Data Referência: Seleção de parcelas:\n03/09/2025', 'Vencidas', 'Intervalo de parcel5:', 'Atualizar']
+['12/10/2025', 'Vcto mais antigo', 'Dias atraso Sistema', '0 CONSIGNADO', 'Saldo Vencido', 'Saldo a Vencer', 'Total Geral']
+['0,00', '76.871,20', '76.871,20']
+['Total:', '76.871,20']
+
+
+
+=====> files/tela_sistema_2.pdf
+['Pesquisar por:\nCLIENTE', 'Consulta de Cobrança', 'Sistema:\nTodos', 'Contrato:\nTodos']
+['Tipo:\nCPF', 'V', 'Buscar']
+['Operação Selecionada']
+['Sistema\nCONSIGNADO']
+['VIr. Parc.\n2.372,64']
+['Dados para Contato', 'Cidade: Mozarlândia U.F .: GO CEP: 76709970']
+['Resumo']
+['Cobradora\nTelefone da\nCobradora', 'Nenhum', 'Nenhuma']
+['Negativado SERASA?\nNegativado SPC?', 'Não\nNão\nNenhum\nNenhum']
+['Status Notificação', 'Status Jurídico']
+
+
+
+=====> files/tela_sistema_3.pdf
+['Consulta de Cobrança', 'Contrato:']
+['Pesquisar por:\nCLIENTE', 'Tipo:\nCPF', 'Sistema:\nTodos', 'V Todos', 'Buscar']
+['Operação Selecionada', 'Nome', 'CPF/CNPJ']
+['Operação', 'Produto\nREFINANCIAMENTO', 'Sistema\nCONSIGNADO']
+['Data Base\n04/02/2021', 'Data Vencimento\n25/03/2030', 'Qtd. Parcelas\n96', 'VIr. Operação', 'Vir. Parc.']
+['Dados Básicos']
+['Garantias da Operação', 'Tipo Operação: Renegociação', 'Tipo Sistema: Consignado', 'Canal de Cadastro da Proposta:']
+['Cliente']
+['C\nDados Endereço']
+['Dados para Contato']
+['Tipo de Referência/ContatoNome da Referência', 'Telefone da Referência']
+['Resumo']
+['Nenhum', 'Nenhuma']
+['Cobradora\nTelefone da\nCobradora\nNegativado SERASA?\nNegativado SPC?\nStatus Jurídico\nStatus Notificação', 'Não\nNão\nNenhum\nNenhum']
+
+
+

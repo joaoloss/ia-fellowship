@@ -1,0 +1,39 @@
+=====> files/oab_3.pdf
+['SON GOKU']
+['Inscrição', 'Seccional', 'Subseção']
+['101943', 'PR', 'CONSELHO SECCIONAL - PARANÁ']
+['SUPLEMENTAR']
+['Endereco Profissional']
+['K']
+['Telefone Profissional']
+['SITUAÇÃO REGULAR']
+
+
+
+=====> files/oab_2.pdf
+['LUIS FILIPE ARAUJO AMARAL']
+['Inscrição', 'Seccional', 'Subseção']
+['101943', 'PR', 'CONSELHO SECCIONAL - PARANÁ']
+['SUPLEMENTAR']
+['Endereço Profissional']
+['AVENIDA PAULISTA, Nº 2300 andar Pilotis, Bela Vista', 'SÃO PAULO - SP']
+['01310300']
+['Telefone Profissional']
+['SITUAÇÃO REGULAR']
+
+
+
+=====> files/oab_1.pdf
+["JOANA D'ARC"]
+['Inscrição', 'Seccional', 'Subseção']
+['101943', 'PR', 'CONSELHO SECCIONAL - PARANÁ']
+['SUPLEMENTAR']
+['Endereço Profissional']
+['AVENIDA PAULISTA, Nº 2300 andar Pilotis, Bela Vista']
+['SÃO PAULO - SP']
+['01310300']
+['Telefone Profissional']
+['SITUAÇÃO REGULAR']
+
+
+

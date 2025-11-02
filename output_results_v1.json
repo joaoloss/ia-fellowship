@@ -1,0 +1,93 @@
+[
+    {
+        "pdf_path": "oab_1.pdf",
+        "result": {
+            "nome": "joana d'arc",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista\nsão paulo - sp\n01310300",
+            "telefone_profissional": null,
+            "situacao": "regular"
+        },
+        "latency_seconds": 2.27,
+        "total_tokens": 684,
+        "input_tokens": 590,
+        "output_tokens": 94
+    },
+    {
+        "pdf_path": "oab_2.pdf",
+        "result": {
+            "nome": "luis filipe araujo amaral",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista\nsão paulo - sp\n01310300",
+            "situacao": "regular"
+        },
+        "latency_seconds": 1.75,
+        "total_tokens": 648,
+        "input_tokens": 557,
+        "output_tokens": 91
+    },
+    {
+        "pdf_path": "oab_3.pdf",
+        "result": {
+            "nome": "son goku",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": null,
+            "categoria": "SUPLEMENTAR",
+            "telefone_profissional": null,
+            "situacao": "regular"
+        },
+        "latency_seconds": 1.47,
+        "total_tokens": 577,
+        "input_tokens": 524,
+        "output_tokens": 53
+    },
+    {
+        "pdf_path": "tela_sistema_1.pdf",
+        "result": {
+            "data_base": "05/09/2025",
+            "data_vencimento": "12/10/2025",
+            "quantidade_parcelas": null,
+            "produto": null,
+            "sistema": "dias atraso sistema",
+            "tipo_de_operacao": null,
+            "tipo_de_sistema": null
+        },
+        "latency_seconds": 1.82,
+        "total_tokens": 641,
+        "input_tokens": 574,
+        "output_tokens": 67
+    },
+    {
+        "pdf_path": "tela_sistema_2.pdf",
+        "result": {
+            "pesquisa_por": "cliente",
+            "pesquisa_tipo": "cpf",
+            "sistema": "consignado",
+            "valor_parcela": "2.372,64",
+            "cidade": "mozarlândia"
+        },
+        "latency_seconds": 2.16,
+        "total_tokens": 586,
+        "input_tokens": 539,
+        "output_tokens": 47
+    },
+    {
+        "pdf_path": "tela_sistema_3.pdf",
+        "result": {
+            "data_referencia": "04/02/2021",
+            "selecao_de_parcelas": null,
+            "total_de_parcelas": "96"
+        },
+        "latency_seconds": 1.4,
+        "total_tokens": 630,
+        "input_tokens": 589,
+        "output_tokens": 41
+    }
+]
