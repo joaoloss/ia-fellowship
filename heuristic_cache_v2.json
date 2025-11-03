@@ -39,7 +39,7 @@
             ]
         },
         "subsecao": {
-            "count": 2,
+            "count": 1,
             "heuristics": [
                 {
                     "type": "string",
@@ -48,14 +48,6 @@
                         2
                     ],
                     "match_count": 2
-                },
-                {
-                    "type": "string",
-                    "position": [
-                        1,
-                        2
-                    ],
-                    "match_count": 1
                 }
             ]
         },
@@ -71,21 +63,16 @@
                 }
             ]
         },
-        "endereco_profissional": {
-            "count": 1,
+        "situacao": {
+            "count": 3,
             "heuristics": [
                 {
                     "type": "string",
                     "position": [
-                        5
+                        9
                     ],
-                    "match_count": 2
-                }
-            ]
-        },
-        "situacao": {
-            "count": 2,
-            "heuristics": [
+                    "match_count": 1
+                },
                 {
                     "type": "string",
                     "position": [
@@ -101,7 +88,33 @@
                     "match_count": 1
                 }
             ]
+        },
+        "endereco_profissional": {
+            "count": 1,
+            "heuristics": [
+                {
+                    "type": "string",
+                    "position": [
+                        5
+                    ],
+                    "match_count": 1
+                }
+            ]
         }
     },
-    "tela_sistema": {}
+    "tela_sistema": {
+        "data_vencimento": {
+            "count": 1,
+            "heuristics": [
+                {
+                    "type": "date",
+                    "position": [
+                        3,
+                        0
+                    ],
+                    "match_count": 1
+                }
+            ]
+        }
+    }
 }
