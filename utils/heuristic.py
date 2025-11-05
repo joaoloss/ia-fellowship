@@ -1,111 +1,174 @@
 """
 This module implements a heuristic caching mechanism to optimize data extraction from PDF documents.
-It allows for storing and reusing heuristics based on previously extracted data to improve performance and accuracy.
-It's currently based on positional and type matching within the PDF matrix representation.
+It maintains a cache of heuristics based on previously extracted data to improve the accuracy and efficiency
+of future extractions. The heuristics are applied during preprocessing to fill in fields in the request schema
+based on cached data, and the cache is updated with new observations after each extraction.
 """
+
+from copy import deepcopy
+from typing import Dict, List
+import logging
 
 from utils.type_resolution import TypeResolver
 from utils.pdf2mat import PDF2Matrix
 
+# Logging setup
+logger = logging.getLogger("my_logger")
+
 class Heuristic:
-    def __init__(self, num_heuristics_per_key: float = 5):
-        self.num_heuristics_per_key = num_heuristics_per_key
-        self.cache = dict()
+    def __init__(self, num_heuristics_per_key: int = 5):
+        """
+        Initialize the Heuristic object with a specified number of maximum heuristics to store per key.
+        """
+        if num_heuristics_per_key < 1:
+            raise ValueError("num_heuristics_per_key must be >= 1")
+        
+        self.num_heuristics_per_key = int(num_heuristics_per_key)
+        self.cache: Dict[str, Dict[str, Dict]] = {}
         self.type_resolver = TypeResolver()
 
-    def get_cache(self):
+    def get_cache(self) -> Dict:
         """
-        Return the current heuristic cache.
+        Return a deep copy of the current heuristic cache to avoid accidental mutation.
         """
-        
-        return self.cache
+        return deepcopy(self.cache)
 
-    def heuristic_preprocessing(self, label:str, request_schema:dict, partial_result:dict, pdf_matrix:list[list[str]]):
+    def heuristic_preprocessing(
+        self,
+        label: str,
+        request_schema: Dict[str, dict],
+        pdf_matrix_representation: List[List[str]],
+    ) -> None:
         """
         Apply heuristic preprocessing to fill in fields in the request schema based on cached heuristics.
-
-        It checks for positional and type matches in the PDF matrix representation.
-        If a match is found, the corresponding field in the partial result is filled and removed from the request schema.
+        Return a partial_result dict with filled fields.
         """
 
         if label not in self.cache: # No cached heuristics for this label
-            return
+            return dict()
         
-        request_schema_keys = list(request_schema.keys())
-        for key in request_schema_keys:
-            if key not in self.cache[label]: # No cached heuristics for this key
+        partial_result = dict()
+
+        for key in list(request_schema.keys()):
+
+            cache_for_key = self.cache[label].get(key)
+            if not cache_for_key: # No cached heuristics for this key
                 continue
-            
-            cache_for_key = self.cache[label][key]
+
+            # Search for matching heuristics
             for record_heuristic in cache_for_key["heuristics"]:
-                position = record_heuristic["position"]
-                if position is None:
+                position = record_heuristic.get("position")
+                if not position:
                     continue
-                
-                if len(position) == 2: # 2D position
-                    row_index, col_index = position
-                    try:
-                        pdf_element = pdf_matrix[row_index][col_index]
-                    except IndexError: # Not found field
-                        continue
 
-                    if record_heuristic["type"] == self.type_resolver.resolve(pdf_element):
-                        # Position and type match: assume it is possible to fill the field directly via heuristic
-                        partial_result[key] = pdf_element
-                        record_heuristic["match_count"] += 1
-                        request_schema.pop(key) # Remove key from request schema as it has been filled
-                        break
+                try:
+                    # 2D position (row, col)
+                    if len(position) == 2:
+                        row_index, col_index = position
+                        pdf_element = pdf_matrix_representation[row_index][col_index]
+                    elif len(position) == 1:
+                        row_index = position[0]
+                        pdf_element = " ".join(pdf_matrix_representation[row_index])
                     else:
+                        # Unexpected shape
+                        logger.debug(f"Unexpected position shape: {position}")
                         continue
-                
-                else: # 1D position
-                    row = position[0]
-                    try:
-                        pdf_row = " ".join(pdf_matrix[row])
-                    except IndexError: # Not found field
-                        continue
+                except (IndexError, TypeError) as e:
+                    # Out of bounds or malformed matrix
+                    logger.debug(f"Position lookup failed for {key} at {position}: {e}")
+                    continue
 
-                    if record_heuristic["type"] == self.type_resolver.resolve(pdf_row):
-                        # Position and type match: assume it is possible to fill the field directly via heuristic
-                        partial_result[key] = pdf_row
-                        record_heuristic["match_count"] += 1
-                        request_schema.pop(key) # Remove key from request schema as it has been filled
-                        break
-                    else:
-                        continue
-    
-    def heuristic_update(self, partial_result:dict, label:str, pdf_matrix:PDF2Matrix):
+                resolved_type = self.type_resolver.resolve(pdf_element)
+                if resolved_type != record_heuristic.get("type"):
+                    continue
+
+                # If type is string, check length similarity using stored mean_length
+                # as string type is very generic and prone to false positives
+                if resolved_type == "string":
+                    mean_len = record_heuristic.get("mean_length")
+                    if mean_len is not None and mean_len > 0:
+                        ratio = len(pdf_element) / mean_len
+
+                        # Skip heuristic if length differs too much (>30%)
+                        if abs(1.0 - ratio) > 0.30:
+                            logger.debug(f"Length mismatch for {key}: {len(pdf_element)} vs mean {mean_len:.2f}")
+                            continue
+                    
+                    # Update mean_length with new sample
+                    sample_count = record_heuristic.get("match_count", 0)
+                    new_mean_length = (mean_len * sample_count + len(pdf_element)) / (sample_count + 1) if mean_len is not None else len(pdf_element)
+                    record_heuristic["mean_length"] = new_mean_length
+
+                # Accept heuristic match
+                partial_result[key] = pdf_element
+                record_heuristic["match_count"] = record_heuristic.get("match_count", 0) + 1
+
+                break  # Stop trying other heuristics for this key
+            else:
+                logger.debug(f"No matching heuristic found for key {key} under label {label}")
+        
+        return partial_result
+
+    def heuristic_update(self, result: Dict[str, str], label: str, pdf_matrix: PDF2Matrix) -> None:
         """
-        Update the heuristic cache with new data from the partial result.
+        Update the heuristic cache with observed partial_result values.
         """
+        if not result or label is None:
+            return
 
         if label not in self.cache:
             self.cache[label] = dict()
-        
-        for key, value in partial_result.items():
+
+        for key, value in result.items():
             if not value: # Skip empty or null values
                 continue
-            
+
             pdf_element_position = pdf_matrix.get_position_of_text(value)
             if pdf_element_position is None:
                 continue
 
+            value_type = self.type_resolver.resolve(value)
+
+            # Heuristic record includes mean_length and sample_count for robust length checks
             heuristic_definition = {
-                "type": self.type_resolver.resolve(value),
+                "type": value_type,
                 "position": pdf_element_position,
-                "match_count": 1
+                "match_count": 1,
             }
+
+            # If string, store length stats
+            if value_type == "string":
+                heuristic_definition["mean_length"] = len(value)
+                heuristic_definition["sample_count"] = 1
 
             if key not in self.cache[label]: # New key for this label
                 self.cache[label][key] = {
-                    "count": 0,
-                    "heuristics": [heuristic_definition]
+                    "count": 1,
+                    "heuristics": [heuristic_definition],
                 }
-            else:
-                # Add new heuristic entry to an existing key
-                self.cache[label][key]["heuristics"].append(heuristic_definition)
+                continue
 
-                # Keep only top self.num_heuristics_per_key heuristics per key based on match_count
-                self.cache[label][key]["heuristics"] = sorted(self.cache[label][key]["heuristics"], key=lambda x: x["match_count"], reverse=True)[:self.num_heuristics_per_key]
+            # Merge into existing heuristics: if same position+type exists, update stats
+            heuristics = self.cache[label][key]["heuristics"]
+            merged = False
+            for rec in heuristics:
+                if rec.get("position") == pdf_element_position and rec.get("type") == value_type:
+                    # update match_count and length stats if present
+                    rec["match_count"] = rec.get("match_count", 0) + 1
+                    if value_type == "string":
+                        prev_mean = rec.get("mean_length", 0)
+                        prev_samples = rec.get("sample_count", 0)
+                        new_samples = prev_samples + 1
+                        new_mean = (prev_mean * prev_samples + len(value)) / new_samples if new_samples else len(value)
+                        rec["mean_length"] = new_mean
+                        rec["sample_count"] = new_samples
+                    merged = True
+                    break
 
-            self.cache[label][key]["count"] += 1
+            if not merged:
+                heuristics.append(heuristic_definition)
+
+            # Keep top heuristics by match_count
+            heuristics.sort(key=lambda x: x.get("match_count", 0), reverse=True)
+            self.cache[label][key]["heuristics"] = heuristics[:self.num_heuristics_per_key]
+            self.cache[label][key]["count"] = self.cache[label][key].get("count", 0) + 1

@@ -17,4 +17,5 @@ dev = [
     "pydantic>=2.12.3",
     "python-dateutil>=2.9.0.post0",
     "pyyaml>=6.0.3",
+    "spacy>=3.8.7",
 ]

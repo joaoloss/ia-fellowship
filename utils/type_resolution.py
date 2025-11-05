@@ -8,7 +8,7 @@ from dateutil.parser import parse as parse_date
 
 class TypeResolver:
     def __init__(self):
-        self.__types = ["number", "date", "string"] # order matters for resolution
+        self.__types = ["number", "date", "string"] # Order matters for resolution
 
     def date(self, value: str) -> bool:
         """

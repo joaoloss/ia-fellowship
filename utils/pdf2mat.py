@@ -12,8 +12,8 @@ import editdistance
 class PDF2Matrix:
     def __init__(self, pdf_path):
         self.pdf_path = pdf_path
-    
-    def get_matrix(self) -> list[list[str]]:
+
+    def create_matrix_representation(self) -> list[list[str]]:
         """
         Convert the PDF into a matrix representation based on text box positions.
         Returns a 2D list (matrix) where each sublist represents a row of text.
@@ -50,7 +50,7 @@ class PDF2Matrix:
                     return (row_index,)  # Return the position as (row,)
                 
             # If the row is longer than 10 characters, allow fuzzy matching
-            elif editdistance.eval(row_str, text) / max(len(row_str), len(text)) < 0.15: # fuzzy match
+            elif editdistance.eval(row_str, text) / max(len(row_str), len(text)) < 0.10: # fuzzy match
                 return (row_index,)  # Return the position as (row,)
 
             # Find exact match within the row
