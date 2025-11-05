@@ -84,20 +84,20 @@ class Heuristic:
 
                 # If type is string, check length similarity using stored mean_length
                 # as string type is very generic and prone to false positives
-                if resolved_type == "string":
-                    mean_len = record_heuristic.get("mean_length")
-                    if mean_len is not None and mean_len > 0:
-                        ratio = len(pdf_element) / mean_len
+                # if resolved_type == "string":
+                #     mean_len = record_heuristic.get("mean_length")
+                #     if mean_len is not None and mean_len > 0:
+                #         ratio = len(pdf_element) / mean_len
 
-                        # Skip heuristic if length differs too much (>30%)
-                        if abs(1.0 - ratio) > 0.30:
-                            logger.debug(f"Length mismatch for {key}: {len(pdf_element)} vs mean {mean_len:.2f}")
-                            continue
+                #         # Skip heuristic if length differs too much (>30%)
+                #         if abs(1.0 - ratio) > 0.30:
+                #             logger.debug(f"Length mismatch for {key}: {len(pdf_element)} vs mean {mean_len:.2f}")
+                #             continue
                     
-                    # Update mean_length with new sample
-                    sample_count = record_heuristic.get("match_count", 0)
-                    new_mean_length = (mean_len * sample_count + len(pdf_element)) / (sample_count + 1) if mean_len is not None else len(pdf_element)
-                    record_heuristic["mean_length"] = new_mean_length
+                #     # Update mean_length with new sample
+                #     sample_count = record_heuristic.get("match_count", 0)
+                #     new_mean_length = (mean_len * sample_count + len(pdf_element)) / (sample_count + 1) if mean_len is not None else len(pdf_element)
+                #     record_heuristic["mean_length"] = new_mean_length
 
                 # Accept heuristic match
                 partial_result[key] = pdf_element

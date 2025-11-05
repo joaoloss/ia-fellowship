@@ -35,7 +35,6 @@ INPUT_DIR = Path("files")
 INPUT_JSON = "dataset.json"
 PRICE_PER_1M_INPUT_TOKENS = 0.25 # USD (02/11/2025)
 PRICE_PER_1M_OUTPUT_TOKENS = 2.0 # USD (02/11/2025)
-OUTPUT_JSON_FILE = "output_results.json"
 
 PROMPT_TEMPLATE_1 = """
 # Tarefa
@@ -83,8 +82,8 @@ def parse_arguments():
     parser = ArgumentParser(description="PDF Extraction with LLM")
     parser.add_argument("--version", type=int, choices=[1, 2], default=1,
                         help="Version of the extraction method to use (1 or 2). Default is 1.")
-    parser.add_argument("--use-heuristic", action="store_true",
-                        help="Enable heuristic caching mechanism. Default is False.")
+    parser.add_argument("--no-heuristic", action="store_true",
+                        help="Disable heuristic caching mechanism. Default is False.")
     return parser.parse_args()
 
 def llm_response_v2(input_schema: dict, matrix: list):
@@ -99,9 +98,13 @@ def llm_response_v2(input_schema: dict, matrix: list):
 
     raw_text = " ".join([" ".join(row) for row in matrix])
 
-    # os.makedirs("debug_outputs", exist_ok=True)
-    # with open(f"debug_outputs/matrix_representation.txt", "a", encoding="utf-8") as f:
-    #     f.write(mat_to_str + "\n\n" + ("="*80) + "\n\n")
+    with open("debug_outputs/raw_text.txt", "a", encoding="utf-8") as f:
+        f.write(raw_text)
+        f.write("\n\n")
+
+    os.makedirs("debug_outputs", exist_ok=True)
+    with open(f"debug_outputs/pdf_representation.txt", "a", encoding="utf-8") as f:
+        f.write(raw_text + "\n\n" + mat_to_str + "\n\n" + ("="*80) + "\n\n")
     
     output_structure = {key: (Optional[str], None) for key in input_schema.keys()}
     OutputModelStructure = create_model("OutputModelStructure", **output_structure)
@@ -235,7 +238,7 @@ def main_w_threads():
     
     args = parse_arguments()
     version = args.version
-    use_heuristic = args.use_heuristic
+    use_heuristic = not args.no_heuristic
 
     logger.debug(f"Using version: {version}")
     logger.debug(f"Heuristic caching enabled: {use_heuristic}\n")
@@ -268,15 +271,19 @@ def main_w_threads():
 def main():
     args = parse_arguments()
     version = args.version
-    use_heuristic = args.use_heuristic
+    use_heuristic = not args.no_heuristic
     disable_heuristic = False # To handle errors in PDF matrix generation
     use_version = version
+    output_json_file = f"output_results_v{version}.json"
 
     logger.debug(f"Using version: {version}")
     logger.debug(f"Heuristic caching enabled: {use_heuristic}\n")
 
     with open(INPUT_JSON) as f:
         input_json = json.load(f)
+    
+    with open(output_json_file, "w") as f:
+        f.write("[]")  # Initialize output file
     
     input_files = os.listdir(INPUT_DIR)
     result_json = list()
@@ -326,7 +333,7 @@ def main():
 
         result_and_metadata = {
             "pdf_path": pdf_file_name,
-            "result": result,
+            "extraction_schema": result,
             "latency_seconds": round(elapsed_time, 2),
             "total_tokens": response.usage.total_tokens,
             "input_tokens": response.usage.input_tokens,
@@ -348,14 +355,7 @@ def main():
             disable_heuristic = False
             use_version = version
 
-    if use_heuristic and not disable_heuristic:
-        with open(f"output_cache_results_v{version}.json", "w") as f:
-            json.dump(result_json, f, indent=4, ensure_ascii=False)
-        
-        with open(f"heuristic_cache_v{version}.json", "w") as f:
-            json.dump(heuristic_cache.get_cache(), f, indent=4, ensure_ascii=False)
-    else:
-        with open(f"output_results_v{version}.json", "w") as f:
+        with open(output_json_file, "w") as f:
             json.dump(result_json, f, indent=4, ensure_ascii=False)
 
 if __name__ == "__main__":

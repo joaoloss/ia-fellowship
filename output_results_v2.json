@@ -1,0 +1,129 @@
+[
+    {
+        "pdf_path": "oab_1.pdf",
+        "extraction_schema": {
+            "nome": "joana d'arc",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "SUPLEMENTAR",
+            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista",
+            "telefone_profissional": null,
+            "situacao": "regular"
+        },
+        "latency_seconds": 2.47,
+        "total_tokens": 796,
+        "input_tokens": 713,
+        "output_tokens": 83,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "3.442500e-04",
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "oab_2.pdf",
+        "extraction_schema": {
+            "nome": "luis filipe araujo amaral",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp",
+            "situacao": "situação regular"
+        },
+        "latency_seconds": 1.99,
+        "total_tokens": 480,
+        "input_tokens": 461,
+        "output_tokens": 19,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "1.532500e-04",
+        "heuristic_hits": [
+            "nome",
+            "inscricao",
+            "seccional",
+            "subsecao",
+            "categoria",
+            "endereco_profissional"
+        ]
+    },
+    {
+        "pdf_path": "oab_3.pdf",
+        "extraction_schema": {
+            "nome": "son goku",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "categoria": "suplementar",
+            "subsecao": "subseção",
+            "telefone_profissional": null,
+            "situacao": "situação regular"
+        },
+        "latency_seconds": 2.78,
+        "total_tokens": 506,
+        "input_tokens": 473,
+        "output_tokens": 33,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "1.842500e-04",
+        "heuristic_hits": [
+            "nome",
+            "inscricao",
+            "seccional",
+            "categoria"
+        ]
+    },
+    {
+        "pdf_path": "tela_sistema_1.pdf",
+        "extraction_schema": {
+            "data_base": "05/09/2025",
+            "data_vencimento": "12/10/2025",
+            "quantidade_parcelas": null,
+            "produto": null,
+            "sistema": null,
+            "tipo_de_operacao": null,
+            "tipo_de_sistema": null
+        },
+        "latency_seconds": 1.99,
+        "total_tokens": 807,
+        "input_tokens": 742,
+        "output_tokens": 65,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "3.155000e-04",
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "tela_sistema_2.pdf",
+        "extraction_schema": {
+            "pesquisa_por": "cliente",
+            "pesquisa_tipo": "cpf",
+            "sistema": "consignado",
+            "valor_parcela": "2.372,64",
+            "cidade": "mozarlândia"
+        },
+        "latency_seconds": 2.01,
+        "total_tokens": 729,
+        "input_tokens": 682,
+        "output_tokens": 47,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "2.645000e-04",
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "tela_sistema_3.pdf",
+        "extraction_schema": {
+            "data_referencia": "04/02/2021",
+            "selecao_de_parcelas": null,
+            "total_de_parcelas": "96"
+        },
+        "latency_seconds": 1.74,
+        "total_tokens": 817,
+        "input_tokens": 776,
+        "output_tokens": 41,
+        "cached_tokens": 0,
+        "reasoning_tokens": 0,
+        "estimated_cost_usd": "2.760000e-04",
+        "heuristic_hits": []
+    }
+]

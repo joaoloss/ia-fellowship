@@ -1,0 +1,261 @@
+joana d'arc inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: joana d'arc
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista
+Row 7: são paulo - sp
+Row 8: 01310300
+Row 9: telefone profissional
+Row 10: situação regular
+
+================================================================================
+
+luis filipe araujo amaral inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+son goku inscrição seccional subseção conselho seccional - paraná 101943 pr suplementar endereco profissional k telefone profissional situação regular
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+consulta de cobrança detalhamento de saldos por parcelas: data referência: 05/09/2025 << esconder filtros data referência: seleção de parcelas: 03/09/2025 vencidas intervalo de parcel5: atualizar 12/10/2025 vcto mais antigo dias atraso sistema 0 consignado saldo vencido saldo a vencer total geral 0,00 76.871,20 76.871,20 total: 76.871,20
+
+Row 1: consulta de cobrança
+Row 2: detalhamento de saldos por parcelas: | data referência: 05/09/2025 | << esconder filtros
+Row 3: data referência: seleção de parcelas: 03/09/2025 | vencidas | intervalo de parcel5: | atualizar
+Row 4: 12/10/2025 | vcto mais antigo | dias atraso sistema | 0 consignado | saldo vencido | saldo a vencer | total geral
+Row 5: 0,00 | 76.871,20 | 76.871,20
+Row 6: total: | 76.871,20
+
+================================================================================
+
+pesquisar por: cliente consulta de cobrança sistema: todos contrato: todos tipo: cpf v buscar operação selecionada sistema consignado vir. parc. 2.372,64 dados para contato cidade: mozarlândia u.f .: go cep: 76709970 resumo cobradora telefone da cobradora nenhum nenhuma negativado serasa? negativado spc? não não nenhum nenhum status notificação status jurídico
+
+Row 1: pesquisar por: cliente | consulta de cobrança | sistema: todos | contrato: todos
+Row 2: tipo: cpf | v | buscar
+Row 3: operação selecionada
+Row 4: sistema consignado
+Row 5: vir. parc. 2.372,64
+Row 6: dados para contato | cidade: mozarlândia u.f .: go cep: 76709970
+Row 7: resumo
+Row 8: cobradora telefone da cobradora | nenhum | nenhuma
+Row 9: negativado serasa? negativado spc? | não não nenhum nenhum
+Row 10: status notificação | status jurídico
+
+================================================================================
+
+consulta de cobrança contrato: pesquisar por: cliente tipo: cpf sistema: todos v todos buscar operação selecionada nome cpf/cnpj operação produto refinanciamento sistema consignado data base 04/02/2021 data vencimento 25/03/2030 qtd. parcelas 96 vir. operação vir. parc. dados básicos garantias da operação tipo operação: renegociação tipo sistema: consignado canal de cadastro da proposta: cliente c dados endereço dados para contato tipo de referência/contatonome da referência telefone da referência resumo nenhum nenhuma cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação não não nenhum nenhum
+
+Row 1: consulta de cobrança | contrato:
+Row 2: pesquisar por: cliente | tipo: cpf | sistema: todos | v todos | buscar
+Row 3: operação selecionada | nome | cpf/cnpj
+Row 4: operação | produto refinanciamento | sistema consignado
+Row 5: data base 04/02/2021 | data vencimento 25/03/2030 | qtd. parcelas 96 | vir. operação | vir. parc.
+Row 6: dados básicos
+Row 7: garantias da operação | tipo operação: renegociação | tipo sistema: consignado | canal de cadastro da proposta:
+Row 8: cliente
+Row 9: c dados endereço
+Row 10: dados para contato
+Row 11: tipo de referência/contatonome da referência | telefone da referência
+Row 12: resumo
+Row 13: nenhum | nenhuma
+Row 14: cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação | não não nenhum nenhum
+
+================================================================================
+
+joana d'arc inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: joana d'arc
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista
+Row 7: são paulo - sp
+Row 8: 01310300
+Row 9: telefone profissional
+Row 10: situação regular
+
+================================================================================
+
+luis filipe araujo amaral inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+son goku inscrição seccional subseção conselho seccional - paraná 101943 pr suplementar endereco profissional k telefone profissional situação regular
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+consulta de cobrança detalhamento de saldos por parcelas: data referência: 05/09/2025 << esconder filtros data referência: seleção de parcelas: 03/09/2025 vencidas intervalo de parcel5: atualizar 12/10/2025 vcto mais antigo dias atraso sistema 0 consignado saldo vencido saldo a vencer total geral 0,00 76.871,20 76.871,20 total: 76.871,20
+
+Row 1: consulta de cobrança
+Row 2: detalhamento de saldos por parcelas: | data referência: 05/09/2025 | << esconder filtros
+Row 3: data referência: seleção de parcelas: 03/09/2025 | vencidas | intervalo de parcel5: | atualizar
+Row 4: 12/10/2025 | vcto mais antigo | dias atraso sistema | 0 consignado | saldo vencido | saldo a vencer | total geral
+Row 5: 0,00 | 76.871,20 | 76.871,20
+Row 6: total: | 76.871,20
+
+================================================================================
+
+pesquisar por: cliente consulta de cobrança sistema: todos contrato: todos tipo: cpf v buscar operação selecionada sistema consignado vir. parc. 2.372,64 dados para contato cidade: mozarlândia u.f .: go cep: 76709970 resumo cobradora telefone da cobradora nenhum nenhuma negativado serasa? negativado spc? não não nenhum nenhum status notificação status jurídico
+
+Row 1: pesquisar por: cliente | consulta de cobrança | sistema: todos | contrato: todos
+Row 2: tipo: cpf | v | buscar
+Row 3: operação selecionada
+Row 4: sistema consignado
+Row 5: vir. parc. 2.372,64
+Row 6: dados para contato | cidade: mozarlândia u.f .: go cep: 76709970
+Row 7: resumo
+Row 8: cobradora telefone da cobradora | nenhum | nenhuma
+Row 9: negativado serasa? negativado spc? | não não nenhum nenhum
+Row 10: status notificação | status jurídico
+
+================================================================================
+
+consulta de cobrança contrato: pesquisar por: cliente tipo: cpf sistema: todos v todos buscar operação selecionada nome cpf/cnpj operação produto refinanciamento sistema consignado data base 04/02/2021 data vencimento 25/03/2030 qtd. parcelas 96 vir. operação vir. parc. dados básicos garantias da operação tipo operação: renegociação tipo sistema: consignado canal de cadastro da proposta: cliente c dados endereço dados para contato tipo de referência/contatonome da referência telefone da referência resumo nenhum nenhuma cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação não não nenhum nenhum
+
+Row 1: consulta de cobrança | contrato:
+Row 2: pesquisar por: cliente | tipo: cpf | sistema: todos | v todos | buscar
+Row 3: operação selecionada | nome | cpf/cnpj
+Row 4: operação | produto refinanciamento | sistema consignado
+Row 5: data base 04/02/2021 | data vencimento 25/03/2030 | qtd. parcelas 96 | vir. operação | vir. parc.
+Row 6: dados básicos
+Row 7: garantias da operação | tipo operação: renegociação | tipo sistema: consignado | canal de cadastro da proposta:
+Row 8: cliente
+Row 9: c dados endereço
+Row 10: dados para contato
+Row 11: tipo de referência/contatonome da referência | telefone da referência
+Row 12: resumo
+Row 13: nenhum | nenhuma
+Row 14: cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação | não não nenhum nenhum
+
+================================================================================
+
+joana d'arc inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: joana d'arc
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista
+Row 7: são paulo - sp
+Row 8: 01310300
+Row 9: telefone profissional
+Row 10: situação regular
+
+================================================================================
+
+luis filipe araujo amaral inscrição seccional subseção 101943 pr conselho seccional - paraná suplementar endereço profissional avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp 01310300 telefone profissional situação regular
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+son goku inscrição seccional subseção conselho seccional - paraná 101943 pr suplementar endereco profissional k telefone profissional situação regular
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+consulta de cobrança detalhamento de saldos por parcelas: data referência: 05/09/2025 << esconder filtros data referência: seleção de parcelas: 03/09/2025 vencidas intervalo de parcel5: atualizar 12/10/2025 vcto mais antigo dias atraso sistema 0 consignado saldo vencido saldo a vencer total geral 0,00 76.871,20 76.871,20 total: 76.871,20
+
+Row 1: consulta de cobrança
+Row 2: detalhamento de saldos por parcelas: | data referência: 05/09/2025 | << esconder filtros
+Row 3: data referência: seleção de parcelas: 03/09/2025 | vencidas | intervalo de parcel5: | atualizar
+Row 4: 12/10/2025 | vcto mais antigo | dias atraso sistema | 0 consignado | saldo vencido | saldo a vencer | total geral
+Row 5: 0,00 | 76.871,20 | 76.871,20
+Row 6: total: | 76.871,20
+
+================================================================================
+
+pesquisar por: cliente consulta de cobrança sistema: todos contrato: todos tipo: cpf v buscar operação selecionada sistema consignado vir. parc. 2.372,64 dados para contato cidade: mozarlândia u.f .: go cep: 76709970 resumo cobradora telefone da cobradora nenhum nenhuma negativado serasa? negativado spc? não não nenhum nenhum status notificação status jurídico
+
+Row 1: pesquisar por: cliente | consulta de cobrança | sistema: todos | contrato: todos
+Row 2: tipo: cpf | v | buscar
+Row 3: operação selecionada
+Row 4: sistema consignado
+Row 5: vir. parc. 2.372,64
+Row 6: dados para contato | cidade: mozarlândia u.f .: go cep: 76709970
+Row 7: resumo
+Row 8: cobradora telefone da cobradora | nenhum | nenhuma
+Row 9: negativado serasa? negativado spc? | não não nenhum nenhum
+Row 10: status notificação | status jurídico
+
+================================================================================
+
+consulta de cobrança contrato: pesquisar por: cliente tipo: cpf sistema: todos v todos buscar operação selecionada nome cpf/cnpj operação produto refinanciamento sistema consignado data base 04/02/2021 data vencimento 25/03/2030 qtd. parcelas 96 vir. operação vir. parc. dados básicos garantias da operação tipo operação: renegociação tipo sistema: consignado canal de cadastro da proposta: cliente c dados endereço dados para contato tipo de referência/contatonome da referência telefone da referência resumo nenhum nenhuma cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação não não nenhum nenhum
+
+Row 1: consulta de cobrança | contrato:
+Row 2: pesquisar por: cliente | tipo: cpf | sistema: todos | v todos | buscar
+Row 3: operação selecionada | nome | cpf/cnpj
+Row 4: operação | produto refinanciamento | sistema consignado
+Row 5: data base 04/02/2021 | data vencimento 25/03/2030 | qtd. parcelas 96 | vir. operação | vir. parc.
+Row 6: dados básicos
+Row 7: garantias da operação | tipo operação: renegociação | tipo sistema: consignado | canal de cadastro da proposta:
+Row 8: cliente
+Row 9: c dados endereço
+Row 10: dados para contato
+Row 11: tipo de referência/contatonome da referência | telefone da referência
+Row 12: resumo
+Row 13: nenhum | nenhuma
+Row 14: cobradora telefone da cobradora negativado serasa? negativado spc? status jurídico status notificação | não não nenhum nenhum
+
+================================================================================
+
