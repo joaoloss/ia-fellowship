@@ -23,15 +23,15 @@ class Heuristic:
         if num_heuristics_per_key < 1:
             raise ValueError("num_heuristics_per_key must be >= 1")
         
-        self.num_heuristics_per_key = int(num_heuristics_per_key)
-        self.cache: Dict[str, Dict[str, Dict]] = {}
-        self.type_resolver = TypeResolver()
+        self.__num_heuristics_per_key = int(num_heuristics_per_key)
+        self.__cache: Dict[str, Dict[str, Dict]] = dict()
+        self.__type_resolver = TypeResolver()
 
     def get_cache(self) -> Dict:
         """
         Return a deep copy of the current heuristic cache to avoid accidental mutation.
         """
-        return deepcopy(self.cache)
+        return deepcopy(self.__cache)
 
     def heuristic_preprocessing(
         self,
@@ -44,14 +44,14 @@ class Heuristic:
         Return a partial_result dict with filled fields.
         """
 
-        if label not in self.cache: # No cached heuristics for this label
+        if label not in self.__cache: # No cached heuristics for this label
             return dict()
         
         partial_result = dict()
 
         for key in list(request_schema.keys()):
 
-            cache_for_key = self.cache[label].get(key)
+            cache_for_key = self.__cache[label].get(key)
             if not cache_for_key: # No cached heuristics for this key
                 continue
 
@@ -78,7 +78,7 @@ class Heuristic:
                     logger.debug(f"Position lookup failed for {key} at {position}: {e}")
                     continue
 
-                resolved_type = self.type_resolver.resolve(pdf_element)
+                resolved_type = self.__type_resolver.resolve(pdf_element)
                 if resolved_type != record_heuristic.get("type"):
                     continue
 
@@ -94,15 +94,16 @@ class Heuristic:
                 #             logger.debug(f"Length mismatch for {key}: {len(pdf_element)} vs mean {mean_len:.2f}")
                 #             continue
                     
-                #     # Update mean_length with new sample
-                #     sample_count = record_heuristic.get("match_count", 0)
-                #     new_mean_length = (mean_len * sample_count + len(pdf_element)) / (sample_count + 1) if mean_len is not None else len(pdf_element)
+                #     # Update mean_length
+                #     prev_count = record_heuristic.get("match_count", 0)
+                #     new_count = prev_count + 1
+                #     new_mean_length = (mean_len * prev_count + len(pdf_element)) / (new_count) if mean_len is not None else len(pdf_element)
                 #     record_heuristic["mean_length"] = new_mean_length
 
                 # Accept heuristic match
                 partial_result[key] = pdf_element
                 record_heuristic["match_count"] = record_heuristic.get("match_count", 0) + 1
-
+                cache_for_key["count"] = cache_for_key.get("count", 0) + 1
                 break  # Stop trying other heuristics for this key
             else:
                 logger.debug(f"No matching heuristic found for key {key} under label {label}")
@@ -116,8 +117,8 @@ class Heuristic:
         if not result or label is None:
             return
 
-        if label not in self.cache:
-            self.cache[label] = dict()
+        if label not in self.__cache:
+            self.__cache[label] = dict()
 
         for key, value in result.items():
             if not value: # Skip empty or null values
@@ -127,7 +128,7 @@ class Heuristic:
             if pdf_element_position is None:
                 continue
 
-            value_type = self.type_resolver.resolve(value)
+            value_type = self.__type_resolver.resolve(value)
 
             # Heuristic record includes mean_length and sample_count for robust length checks
             heuristic_definition = {
@@ -139,36 +140,31 @@ class Heuristic:
             # If string, store length stats
             if value_type == "string":
                 heuristic_definition["mean_length"] = len(value)
-                heuristic_definition["sample_count"] = 1
 
-            if key not in self.cache[label]: # New key for this label
-                self.cache[label][key] = {
+            if key not in self.__cache[label]: # New key for this label
+                self.__cache[label][key] = {
                     "count": 1,
                     "heuristics": [heuristic_definition],
                 }
                 continue
 
             # Merge into existing heuristics: if same position+type exists, update stats
-            heuristics = self.cache[label][key]["heuristics"]
-            merged = False
+            heuristics = self.__cache[label][key]["heuristics"]
             for rec in heuristics:
                 if rec.get("position") == pdf_element_position and rec.get("type") == value_type:
-                    # update match_count and length stats if present
                     rec["match_count"] = rec.get("match_count", 0) + 1
+
                     if value_type == "string":
                         prev_mean = rec.get("mean_length", 0)
-                        prev_samples = rec.get("sample_count", 0)
-                        new_samples = prev_samples + 1
-                        new_mean = (prev_mean * prev_samples + len(value)) / new_samples if new_samples else len(value)
-                        rec["mean_length"] = new_mean
-                        rec["sample_count"] = new_samples
-                    merged = True
-                    break
+                        new_count = rec["match_count"]
+                        prev_count = new_count - 1
+                        rec["mean_length"] = (prev_mean * prev_count + len(value)) / new_count
 
-            if not merged:
+                    break
+            else: # New heuristic for this key
                 heuristics.append(heuristic_definition)
 
             # Keep top heuristics by match_count
             heuristics.sort(key=lambda x: x.get("match_count", 0), reverse=True)
-            self.cache[label][key]["heuristics"] = heuristics[:self.num_heuristics_per_key]
-            self.cache[label][key]["count"] = self.cache[label][key].get("count", 0) + 1
+            self.__cache[label][key]["heuristics"] = heuristics[:self.__num_heuristics_per_key]
+            self.__cache[label][key]["count"] = self.__cache[label][key].get("count", 0) + 1

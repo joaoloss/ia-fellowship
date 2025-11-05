@@ -1,5 +1,16 @@
 # AI Fellowship Data Repository
 
+- [AI Fellowship Data Repository](#ai-fellowship-data-repository)
+  - [📝 Descrição do problema](#-descrição-do-problema)
+  - [💻 Stack](#-stack)
+  - [💡 Estratégia](#-estratégia)
+    - [🤖 LLM: reduzindo latência e custos](#-llm-reduzindo-latência-e-custos)
+    - [🤯 Heurística](#-heurística)
+      - [Pressupostos adotados](#pressupostos-adotados)
+      - [Cache](#cache)
+      - [Workflow](#workflow)
+
+
 Esse repositório contém um projeto desenvolvido durante o processo seletivo para o fellowship promovido pela empresa [Enter](https://www.getenter.ai/).
 
 ## 📝 Descrição do problema
@@ -91,18 +102,42 @@ Sabendo que a interação com um LLM seria uma peça fundamental e inegociável,
 
 ### 🤯 Heurística
 
-Pressupostos adotados durante a elaboração da heurística:
+#### Pressupostos adotados
+
 1. Conjunto definido de layouts por label.
     - Assumiu-se que documentos com mesma label tendem a possuir um conjunto de layouts padrão. Ou seja, para uma mesma label existe um conjunto de configurações a partir das quais os dados estão dispostos.
 2. Mesma chave, mesmo tipo.
     - Assumiu-se valores de labels e chaves iguais possuem o mesmo tipo/formato.
-    - Exemplo: dada uma label, uma chave `nome` sempre conterá uma string, uma chave `data` sempre conterá um valor no formato de data, uma chave `valor_total` sempre conterá um valor numério etc.
+    - Exemplo: dada uma label, uma chave `nome` sempre conterá uma string, uma chave `data` sempre conterá um valor no formato de data, uma chave `valor_total` sempre conterá um valor numério, etc..
 3. LLM acerta.
     - Assume-se que o resultado gerado pela LLM está correto.
 
+#### Cache
+
+A cache é um dicionário cujos valores são preenchidos de forma adaptativa ao longo do processamento dos PDFs. Sua estrutura segue três níveis:
+
+1. **Nível 1**: chaves correspondendo às *labels* dos documentos (ex.: `carteira_oab`, `tela_sistema`, etc.), permitindo que heurísticas sejam especializadas por tipo de documento.
+
+2. **Nível 2**: cada label possui um dicionário como valor, cujas chaves correspondem às *keys* do esquema.
+
+3. **Nível 3**: cada key possui um dicionário como valor, cujas chaves são:
+    1. `count`, que armazena a quantidade total de vezes que a key foi solicitada em um esquema de requisição, e
+    2. `heuristics`, que corresponde a uma lista de heurísticas aprendidas.
+
+4. **Nível 4**: cada heurística é um dicionário cujas chaves são:
+    1. `type`: tipo de dado (ver módulo `utils.type_resolution.py`),
+    2. `position`: posição do valor na representação matricial do conteúdo do PDF (ver módulo `utils.pdf2mat.py`),
+    3. `match_count`: número de vezes que essa heurística foi usada,
+    4. Se o tipo for `string`, há também a chave `mean_length`: armazena um float com o tamanho médio acumulado dos valores da chave.
+
+A cada nova extração, o método `heuristic_update()` atualiza o cache reforçando heurísticas existentes ou adicionando novas, priorizando as que apresentam maior frequência de acertos.
+Posteriormente, no processo de pré-inferência (método `heuristic_preprocessing()`), essas heurísticas são utilizadas para preencher automaticamente valores do esquema de requisição, reduzindo a quantidade de dados solicitados ao modelo de linguagem.
+
+#### Workflow
+
 Com base nos pressupostos listados, a heurística criada segue os seguintes passos:
 ```mermaid
-flowchart TD
+flowchart LR
     A[Inicio da Extracao] --> B[Recebe label e schema]
     B --> C{Ha heuristica em cache para este label?}
     
@@ -126,5 +161,5 @@ flowchart TD
     N --> O[Resolve tipo do valor]
     O --> P[Atualiza cache para label e chave]
     
-    P --> Q[Ordena heuristicas por
+    P --> Q[Ordena heuristicas por]
 ```
