@@ -1,0 +1,146 @@
+[
+    {
+        "pdf_path": "oab_1.pdf",
+        "extraction_schema": {
+            "nome": "JOANA D'ARC",
+            "inscricao": "101943",
+            "seccional": "PR",
+            "subsecao": "CONSELHO SECCIONAL - PARANÁ",
+            "categoria": "SUPLEMENTAR",
+            "endereco_profissional": "AVENIDA PAULISTA, Nº 2300 andar Pilotis, Bela Vista\nSÃO PAULO - SP\n01310300",
+            "telefone_profissional": null,
+            "situacao": "SITUAÇÃO REGULAR"
+        },
+        "metadata": {
+            "version_used": "native_pdf",
+            "latency_seconds": 9.52,
+            "total_tokens": 1619,
+            "input_tokens": 1516,
+            "output_tokens": 103,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "5.850000e-04"
+        },
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "oab_2.pdf",
+        "extraction_schema": {
+            "nome": "luis filipe araujo amaral",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "subsecao": "conselho seccional - paraná",
+            "categoria": "suplementar",
+            "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp\n\n01310300",
+            "situacao": "situação regular"
+        },
+        "metadata": {
+            "version_used": "text_based",
+            "latency_seconds": 2.01,
+            "total_tokens": 571,
+            "input_tokens": 522,
+            "output_tokens": 49,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "2.285000e-04"
+        },
+        "heuristic_hits": [
+            "nome",
+            "inscricao",
+            "seccional",
+            "subsecao",
+            "categoria"
+        ]
+    },
+    {
+        "pdf_path": "oab_3.pdf",
+        "extraction_schema": {
+            "nome": "son goku",
+            "inscricao": "101943",
+            "seccional": "pr",
+            "categoria": "suplementar",
+            "subsecao": "subseção conselho seccional - paraná",
+            "telefone_profissional": null,
+            "situacao": "situação regular"
+        },
+        "metadata": {
+            "version_used": "text_based",
+            "latency_seconds": 1.67,
+            "total_tokens": 547,
+            "input_tokens": 507,
+            "output_tokens": 40,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "2.067500e-04"
+        },
+        "heuristic_hits": [
+            "nome",
+            "inscricao",
+            "seccional",
+            "categoria"
+        ]
+    },
+    {
+        "pdf_path": "tela_sistema_1.pdf",
+        "extraction_schema": {
+            "data_base": "03/09/2025",
+            "data_vencimento": "12/10/2025",
+            "quantidade_parcelas": null,
+            "produto": null,
+            "sistema": "CONSIGNADO",
+            "tipo_de_operacao": null,
+            "tipo_de_sistema": null
+        },
+        "metadata": {
+            "version_used": "native_pdf",
+            "latency_seconds": 3.21,
+            "total_tokens": 1574,
+            "input_tokens": 1507,
+            "output_tokens": 67,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "5.107500e-04"
+        },
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "tela_sistema_2.pdf",
+        "extraction_schema": {
+            "pesquisa_por": "CLIENTE",
+            "pesquisa_tipo": "CPF",
+            "sistema": "CONSIGNADO",
+            "valor_parcela": "2.372,64",
+            "cidade": "Mozarlândia"
+        },
+        "metadata": {
+            "version_used": "native_pdf",
+            "latency_seconds": 2.69,
+            "total_tokens": 1504,
+            "input_tokens": 1456,
+            "output_tokens": 48,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "4.600000e-04"
+        },
+        "heuristic_hits": []
+    },
+    {
+        "pdf_path": "tela_sistema_3.pdf",
+        "extraction_schema": {
+            "data_referencia": "04/02/2021",
+            "selecao_de_parcelas": null,
+            "total_de_parcelas": "96"
+        },
+        "metadata": {
+            "version_used": "native_pdf",
+            "latency_seconds": 3.32,
+            "total_tokens": 1540,
+            "input_tokens": 1499,
+            "output_tokens": 41,
+            "cached_tokens": 0,
+            "reasoning_tokens": 0,
+            "estimated_cost_usd": "4.567500e-04"
+        },
+        "heuristic_hits": []
+    }
+]

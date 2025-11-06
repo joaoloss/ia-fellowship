@@ -1,0 +1,218 @@
+{
+    "carteira_oab": {
+        "nome": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        0
+                    ],
+                    "match_count": 3,
+                    "mean_length": 11
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "joana d'arc",
+                "luis filipe araujo amaral",
+                "son goku"
+            ]
+        },
+        "inscricao": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        2,
+                        0
+                    ],
+                    "match_count": 3
+                }
+            ],
+            "type": "number",
+            "example_values": [
+                "101943"
+            ]
+        },
+        "seccional": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        2,
+                        1
+                    ],
+                    "match_count": 3,
+                    "mean_length": 2
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "pr"
+            ]
+        },
+        "subsecao": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        2,
+                        2
+                    ],
+                    "match_count": 2,
+                    "mean_length": 27
+                },
+                {
+                    "position": [
+                        1,
+                        2
+                    ],
+                    "match_count": 1,
+                    "mean_length": 36
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "conselho seccional - paraná",
+                "subseção conselho seccional - paraná"
+            ]
+        },
+        "categoria": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        3
+                    ],
+                    "match_count": 3,
+                    "mean_length": 11
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "suplementar"
+            ]
+        },
+        "endereco_profissional": {
+            "count": 2,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "avenida paulista, nº 2300 andar pilotis, bela vista\nsão paulo - sp\n01310300",
+                "avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp\n\n01310300"
+            ]
+        },
+        "situacao": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        9
+                    ],
+                    "match_count": 1,
+                    "mean_length": 16
+                },
+                {
+                    "position": [
+                        8
+                    ],
+                    "match_count": 1,
+                    "mean_length": 16
+                },
+                {
+                    "position": [
+                        7
+                    ],
+                    "match_count": 1,
+                    "mean_length": 16
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "situação regular"
+            ]
+        }
+    },
+    "tela_sistema": {
+        "data_base": {
+            "count": 1,
+            "heuristics": [],
+            "type": "date",
+            "example_values": [
+                "03/09/2025"
+            ]
+        },
+        "data_vencimento": {
+            "count": 1,
+            "heuristics": [
+                {
+                    "position": [
+                        3,
+                        0
+                    ],
+                    "match_count": 1
+                }
+            ],
+            "type": "date",
+            "example_values": [
+                "12/10/2025"
+            ]
+        },
+        "sistema": {
+            "count": 2,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "consignado"
+            ]
+        },
+        "pesquisa_por": {
+            "count": 1,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "cliente"
+            ]
+        },
+        "pesquisa_tipo": {
+            "count": 1,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "cpf"
+            ]
+        },
+        "valor_parcela": {
+            "count": 1,
+            "heuristics": [],
+            "type": "number",
+            "example_values": [
+                "2.372,64"
+            ]
+        },
+        "cidade": {
+            "count": 1,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "mozarlândia"
+            ]
+        },
+        "data_referencia": {
+            "count": 1,
+            "heuristics": [],
+            "type": "date",
+            "example_values": [
+                "04/02/2021"
+            ]
+        },
+        "total_de_parcelas": {
+            "count": 1,
+            "heuristics": [],
+            "type": "number",
+            "example_values": [
+                "96"
+            ]
+        }
+    }
+}
