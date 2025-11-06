@@ -50,20 +50,18 @@ Sabendo que a interação com um LLM seria uma peça fundamental e inegociável,
 5. Por fim, testou-se passar o PDF de entrada de duas formas:
     1. Utilizando a feature de [File inputs](https://platform.openai.com/docs/guides/pdf-files?api-mode=responses) via base64, o que inevitavelmente aumenta custo e latência - uma vez que: "To help models understand PDF content, we put into the model's context both extracted text and an image of each page—regardless of whether the page includes images.", OpenAI.
     2. Utilizando apenas texto via engenharia de prompt. Realizar isso é complicado, uma vez que o layout desempenha um papel fundamental. Para contornar esse problema foi fornecido ao modelo um esquema que lhe permite entender o layout do arquivo original (aqui, começa a entrar a heurística utilizada, que será detalhada no próximo tópico) através de uma matriz. Exemplo para o arquivo `oab_1.pdf`:
-   
-            ```none
-            Row 1: joana d'arc
-            Row 2: inscrição | seccional | subseção
-            Row 3: 101943 | pr | conselho seccional - paraná
-            Row 4: suplementar
-            Row 5: endereço profissional
-            Row 6: avenida paulista, nº 2300 andar pilotis, bela vista
-            Row 7: são paulo - sp
-            Row 8: 01310300
-            Row 9: telefone profissional
-            Row 10: situação regular
-            ```
-
+        ```none
+        Row 1: joana d'arc
+        Row 2: inscrição | seccional | subseção
+        Row 3: 101943 | pr | conselho seccional - paraná
+        Row 4: suplementar
+        Row 5: endereço profissional
+        Row 6: avenida paulista, nº 2300 andar pilotis, bela vista
+        Row 7: são paulo - sp
+        Row 8: 01310300
+        Row 9: telefone profissional
+        Row 10: situação regular
+        ```
         Apesar de modelos de linguagem serem, em essência, orientados a texto e não apresentarem desempenho ideal em dados tabulares, observou-se uma melhora significativa nos resultados quando as informações foram estruturadas em tabela/matriz, em comparação ao uso do texto corrido sozinho. Obviamente isso acabou resultando em um pequeno aumento de latência e tokens consumidos.
     
     **Resultados**: enviar o arquivo PDF para o LLM (via base64), em vez do texto extraído do PDF no prompt, resultou em aproximadamente **2x mais tempo**, **2x mais tokens**. Contudo, durante os experimentos, percebeu-se que os resultados foram um pouco inferiores e menos consistentes. Exemplos:
@@ -102,45 +100,45 @@ A cache é um dicionário cujos valores são preenchidos de forma adaptativa ao 
     2. `match_count`: número de vezes que essa heurística foi usada,
     3. Se o tipo for `string`, há também a chave `mean_length`: armazena um float com o tamanho médio acumulado dos valores da chave.
 
-Exemplo da estrutura da cache:
-```json
-"carteira_oab": {
-    "nome": {
-        "count": 3,
-        "heuristics": [
-            {
-                "position": [
-                    0
-                ],
-                "match_count": 3,
-                "mean_length": 11
-            }
-        ],
-        "type": "string",
-        "example_values": [
-            "joana d'arc",
-            "luis filipe araujo amaral",
-            "son goku"
-        ]
-    },
-    "inscricao": {
-        "count": 3,
-        "heuristics": [
-            {
-                "position": [
-                    2,
-                    0
-                ],
-                "match_count": 3
-            }
-        ],
-        "type": "number",
-        "example_values": [
-            "101943"
-        ]
+    Exemplo da estrutura da cache:
+    ```json
+    "carteira_oab": {
+        "nome": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        0
+                    ],
+                    "match_count": 3,
+                    "mean_length": 11
+                }
+            ],
+            "type": "string",
+            "example_values": [
+                "joana d'arc",
+                "luis filipe araujo amaral",
+                "son goku"
+            ]
+        },
+        "inscricao": {
+            "count": 3,
+            "heuristics": [
+                {
+                    "position": [
+                        2,
+                        0
+                    ],
+                    "match_count": 3
+                }
+            ],
+            "type": "number",
+            "example_values": [
+                "101943"
+            ]
+        }
     }
-}
-```
+    ```
 
 **Antes de realizar a chamada ao modelo** (gargalo do sistema em termos de custo e tempo) executa-se um pré-processamento por meio do método `heuristic_preprocessing()`. Esse método utiliza a cache de heurísticas já aprendidas para tentar preencher automaticamente parte do esquema de extração (`request_schema`) antes da inferência. Para cada chave do esquema, o método verifica se existem heurísticas previamente armazenadas para a label do documento atual e, se existir, tenta recuperar o valor correspondente consultando diretamente a matriz do PDF. Os valores recuperados são armazenados em um dicionário parcial (`partial_result`), que representa os campos resolvidos apenas por heurística, sem consulta ao modelo. Durante esse processo, o método também ajusta contadores internos e estatísticas de uso das heurísticas, reforçando aquelas que se mostram mais eficazes.
 
@@ -226,45 +224,50 @@ Essa **abordagem híbrida** tenta explorar o melhor dos dois mundos: prioriza cu
 ## 👨🏻‍💻 Como usar
 
 1. Clone o repositório
-```bash
-https://github.com/joaoloss/ia-fellowship.git
-cd ia-fellowship
-```
+    ```bash
+    https://github.com/joaoloss/ia-fellowship.git
+    cd ia-fellowship
+    ```
 
-2. Inicialize o ambiente com [uv](https://docs.astral.sh/uv/)
-```bash
-uv init
-uv sync
-```
+2. Crie um `.env`
+    ```
+    OPENAI_API_KEY=<sua-chave-api>
+    ```
 
-Obs.: caso esteja utilizando o repositório pela primeira vez, o uv criará automaticamente o ambiente isolado e instalará todas as dependências definidas no `pyproject.toml`.
+3. Inicialize o ambiente com [uv](https://docs.astral.sh/uv/)
+    ```bash
+    uv init
+    uv sync
+    ```
 
-3. Execução do Programa
+    Obs.: caso esteja utilizando o repositório pela primeira vez, o uv criará automaticamente o ambiente isolado e instalará todas as dependências definidas no `pyproject.toml`.
 
-O programa pode ser utilizado de duas maneiras: via linha de comando (**CLI**) ou via interface gráfica (**UI**).
+4. Execução do Programa
 
-- **CLI mode**
-```bash
-uv run main.py [-h] [--verbose {debug,info,warning,error,tqdm}] [--input-json INPUT_JSON]
-```
+    O programa pode ser utilizado de duas maneiras: via linha de comando (**CLI**) ou via interface gráfica (**UI**).
 
-- `--verbose`: Nível de detalhamento dos logs. Pode ser: debug, info, warning, error ou tqdm (default: info).
+    - **CLI mode**
+        ```bash
+        uv run main.py [-h] [--verbose {debug,info,warning,error,tqdm}] [--input-json INPUT_JSON]
+        ```
 
-- `--input-json`: Nome do arquivo JSON de entrada quando executado em modo CLI (default: dataset.json).
+    - `--verbose`: Nível de detalhamento dos logs. Pode ser: debug, info, warning, error ou tqdm (default: info).
 
-Exemplo:
-```bash
-uv run main.py --verbose tqdm --input-json input.json
-```
-  
-- **UI mode**
-```bash
-uv run streamlit run main.py  -- --streamlit 
-```
+    - `--input-json`: Nome do arquivo JSON de entrada quando executado em modo CLI (default: dataset.json).
 
-Em seguida acesse `http://localhost:8501` no navegador.
+        Exemplo:
+        ```bash
+        uv run main.py --verbose tqdm --input-json input.json
+        ```
+    
+    - **UI mode**
+        ```bash
+        uv run streamlit run main.py  -- --streamlit 
+        ```
 
-Ao executar o programa via interface gráfica (**UI**), além do processamento padrão, a aplicação apresenta **estatísticas e visualizações interativas** relacionadas ao processo de extração — incluindo tempo de execução, custo estimado e desempenho da heurística.
+        Em seguida acesse `http://localhost:8501` no navegador.
+
+    Ao executar o programa via interface gráfica (**UI**), além do processamento padrão, a aplicação apresenta **estatísticas e visualizações interativas** relacionadas ao processo de extração — incluindo tempo de execução, custo estimado e desempenho da heurística.
 
 ## 🔢 Entrada e saída
 
