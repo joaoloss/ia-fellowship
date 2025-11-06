@@ -330,7 +330,7 @@ Os arquivos PDF referenciados pelo JSON de entrada devem estar na pasta `files`.
     ]
     ```
 
-2. `debug_outputs`: contém artefatos auxiliares para depuração, incluindo a representação matricial dos PDFs e um JSON com o estado final da cache de heurísticas aprendidas durante o processamento.
+2. `debug_outputs/`: contém artefatos auxiliares para depuração, incluindo a representação matricial dos PDFs e um JSON com o estado final da cache de heurísticas aprendidas durante o processamento.
 
 ## 🧩 Melhorias reconhecidas
 
