@@ -6,13 +6,11 @@ readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
     "openai>=2.6.1",
-]
-
-[dependency-groups]
-dev = [
+    "plotly>=6.4.0",
     "dotenv>=0.9.9",
     "editdistance>=0.8.1",
     "ipykernel>=7.1.0",
+    "pandas>=2.3.3",
     "pdfminer-six>=20250506",
     "pydantic>=2.12.3",
     "pyyaml>=6.0.3",

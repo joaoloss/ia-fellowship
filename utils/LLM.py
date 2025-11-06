@@ -1,3 +1,7 @@
+"""
+LLM-related utilities for information extraction from PDFs.
+"""
+
 from utils.heuristic import Heuristic
 
 from openai import OpenAI
@@ -25,6 +29,7 @@ Alguns campos do YAML possuem exemplos de valores extraídos previamente. Utiliz
 ## PRECISÃO E COMPLETUDE
 - Extraia apenas informações explicitamente presentes no PDF
 - Não infira ou invente valores não presentes
+- Utiliza as descrições dos campos no YAML para guiar a extração, em alguns casos os valores possíveis para um campo estão explicitamente descritos no YAML, não ignore essas descrições
 - Utilize os exemplos fornecidos no YAML para identificar padrões, mas não copie valores diretamente a menos que estejam presentes no PDF
 - Não ignore informações relevantes que correspondam aos campos
 - Preencha uma chave **somente se** o nome da chave ou uma abreviação **claramente correspondente** estiver presente no texto do PDF. Se não estiver explicitamente presente ou reconhecível, não use termos similares para preencher a chave. Na dúvida, prefira deixar o campo como null
@@ -47,7 +52,7 @@ Sua tarefa é retornar um json, e somente um json, preenchendo os campos solicit
 ## PRECISÃO E COMPLETUDE
 - Extraia apenas informações explicitamente presentes no PDF
 - Não infira ou invente valores não presentes
-- Utilize os exemplos fornecidos no YAML para identificar padrões, mas não copie valores diretamente a menos que estejam presentes no PDF
+- Utiliza as descrições dos campos no YAML para guiar a extração, em alguns casos os valores possíveis para um campo estão explicitamente descritos no YAML, não ignore essas descrições
 - Não ignore informações relevantes que correspondam aos campos
 - Preencha uma chave **somente se** o nome da chave ou uma abreviação **claramente correspondente** estiver presente no texto do PDF. Se não estiver explicitamente presente ou reconhecível, não use termos similares para preencher a chave. Na dúvida, prefira deixar o campo como null
 - Para campos ausentes, use `null`, não use strings vazias

@@ -25,4 +25,3 @@
 ### Limitations
 
 1. The heuristic only looks to present values, not present aren't considered.
-2. 

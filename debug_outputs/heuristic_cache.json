@@ -139,7 +139,7 @@
             "heuristics": [],
             "type": "date",
             "example_values": [
-                "03/09/2025"
+                "05/09/2025"
             ]
         },
         "data_vencimento": {

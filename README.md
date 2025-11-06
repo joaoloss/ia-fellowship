@@ -9,7 +9,11 @@
       - [Pressupostos adotados](#pressupostos-adotados)
       - [Cache](#cache)
       - [Workflow](#workflow)
+    - [💬 Alternância de prompt](#-alternância-de-prompt)
   - [👨🏻‍💻 Como usar](#-como-usar)
+  - [🔢 Entrada e saída](#-entrada-e-saída)
+    - [Entrada](#entrada)
+    - [Saída](#saída)
   - [🧩 Melhorias reconhecidas](#-melhorias-reconhecidas)
 
 
@@ -65,7 +69,7 @@ Sabendo que a interação com um LLM seria uma peça fundamental e inegociável,
     **Resultados**: enviar o arquivo PDF para o LLM (via base64), em vez do texto extraído do PDF no prompt, resultou em aproximadamente **2x mais tempo**, **2x mais tokens**. Contudo, durante os experimentos, percebeu-se que os resultados foram um pouco inferiores e menos consistentes. Exemplos:
     - Para a chave `"situacao"` dentro de `"label": "carteira_oab"`: em alguns casos, o modelo retornou apenas `"regular"`, enquanto em outros retornou `"situação regular"`. Além disso, para a chave `"endereco_profissional"` dentro da mesma categoria: partes finais do endereço foram ocasionalmente omitidas — como, por exemplo, o CEP.
 
-    O tópico a seguir apresenta a abordagem adotada para lidar com esses problemas.
+    Os tópicos a seguir apresentam a abordagem adotada para lidar com esses problemas.
 
 ### 🤯 Heurística
 
@@ -77,7 +81,7 @@ Sabendo que a interação com um LLM seria uma peça fundamental e inegociável,
     - Assumiu-se valores de labels e chaves iguais possuem o mesmo tipo/formato.
     - Exemplo: dada uma label, uma chave `nome` sempre conterá uma string, uma chave `data` sempre conterá um valor no formato de data, uma chave `valor_total` sempre conterá um valor numério, etc..
 3. LLM acerta.
-    - Assume-se que o resultado gerado pela LLM quando alimentada com o arquivo PDF nativo está correto.
+    - Assume-se que o resultados gerados pela LLM (principalmente quando alimentada com o arquivo PDF nativo) está correto.
 
 #### Cache
 
@@ -207,6 +211,18 @@ flowchart LR
     P[Manter apenas as N heurísticas mais fortes]
 ```
 
+### 💬 Alternância de prompt
+
+Conforme dito anteriormente, é evidente o *trade-off* entre passar o PDF nativo e passá-lo como uma representação textual estruturada no prompt: a extração via PDF nativo tende a ser mais precisa, custosa e lenta e a extração baseada na matriz textual é mais barata e rápida, mas pode ser menos fiel ao conteúdo original.
+
+A seguinte estratégia foi utilizada para atacar esse desafio: para os casos em que a heurística não pôde contribuir significativamente com o preenchimento do request_schema (quando o percentual de chaves preenchidas pela heurística para um determinado documento foi menor ou igual a um limiar predefinido - 50% no código, valor pode ser ajustado) o sistema opta por utilizar a extração baseada no PDF nativo. Assim, além de garantir maior precisão, também permite atualizar a heurística com dados mais precisos e confiáveis.
+
+Nos casos em que o programa opta por utilizar a representação textual no prompt, além de enviar o esquema de extração em YAML, também são inseridos exemplos previamente observados pela heurística para cada chave. Esses exemplos não são utilizados como valores fixos, mas como pistas semânticas para auxiliar o modelo - uma vez que essa abordagem tende a ser mais imprecisa. Em outras palavras, caso a heurística já tenha visto valores associados àquela mesma chave em documentos da mesma label, tais valores servem como sinalização do formato esperado, da terminologia utilizada ou da forma como aquela informação costuma aparecer.
+
+Essa **abordagem híbrida** tenta explorar o melhor dos dois mundos: prioriza custo e eficiência quando há histórico e conhecimento acumulado para aquela label, enquanto recorre ao PDF nativo para maximizar precisão justamente nos casos em que o risco de erro ou ambiguidade é maior.
+
+
+
 ## 👨🏻‍💻 Como usar
 
 1. Clone o repositório
@@ -215,12 +231,106 @@ https://github.com/joaoloss/ia-fellowship.git
 cd ia-fellowship
 ```
 
-2. 
+2. Inicialize o ambiente com [uv](https://docs.astral.sh/uv/)
 ```bash
 uv init
+uv sync
 ```
 
-2. 
+Obs.: caso esteja utilizando o repositório pela primeira vez, o uv criará automaticamente o ambiente isolado e instalará todas as dependências definidas no `pyproject.toml`.
+
+3. Execução do Programa
+
+O programa pode ser utilizado de duas maneiras: via linha de comando (**CLI**) ou via interface gráfica (**UI**).
+
+- **CLI mode**
+```bash
+uv run main.py [-h] [--verbose {debug,info,warning,error,tqdm}] [--input-json INPUT_JSON]
+```
+
+- `--verbose`: Nível de detalhamento dos logs. Pode ser: debug, info, warning, error ou tqdm (default: info).
+
+- `--input-json`: Nome do arquivo JSON de entrada quando executado em modo CLI (default: dataset.json).
+
+Exemplo:
+```bash
+uv run main.py --verbose tqdm --input-json input.json
+```
+  
+- **UI mode**
+```bash
+uv run streamlit run main.py  -- --streamlit 
+```
+
+Em seguida acesse `http://localhost:8501` no navegador.
+
+Ao executar o programa via interface gráfica (**UI**), além do processamento padrão, a aplicação apresenta **estatísticas e visualizações interativas** relacionadas ao processo de extração — incluindo tempo de execução, custo estimado e desempenho da heurística.
+
+## 🔢 Entrada e saída
+
+### Entrada
+
+Os arquivos PDF referenciados pelo JSON de entrada devem estar na pasta `files`. Além disso o JSON de entrada deve seguir o seguinte padrão:
+```json
+[
+    {
+        "label": "carteira_oab",
+        "extraction_schema": {
+            "nome": "Nome do profissional, normalmente no canto superior esquerdo da imagem",
+            "inscricao": "Número de inscrição do profissional",
+            "seccional": "Seccional do profissional",
+            "subsecao": "Subseção à qual o profissional faz parte",
+            "categoria": "Categoria, pode ser ADVOGADO, ADVOGADA, SUPLEMENTAR, ESTAGIARIO, ESTAGIARIA",
+            "endereco_profissional": "Endereço do profissional",
+            "telefone_profissional": "Telefone do profissional",
+            "situacao": "Situação do profissional, normalmente no canto inferior direito."
+        },
+        "pdf_path": "oab_1.pdf"
+    }
+]
+```
+
+### Saída
+
+1. `output_results.json`: arquivo contendo o resultado do processamento juntamente com dados estatísticos.
+
+    Exemplo:
+    ```json
+    [
+        {
+            "extraction_schema": {
+                "nome": "luis filipe araujo amaral",
+                "inscricao": "101943",
+                "seccional": "pr",
+                "subsecao": "conselho seccional - paraná",
+                "categoria": "suplementar",
+                "endereco_profissional": "avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp\n\n01310300",
+                "situacao": "situação regular"
+            },
+            "metadata": {
+                "pdf_path": "oab_2.pdf",
+                "label": "carteira_oab",
+                "version_used": "text_based",
+                "latency_seconds": 2.3,
+                "total_tokens": 611,
+                "input_tokens": 562,
+                "output_tokens": 49,
+                "cached_tokens": 0,
+                "reasoning_tokens": 0,
+                "estimated_cost_usd": "2.385000e-04",
+                "heuristic_hits": [
+                    "nome",
+                    "inscricao",
+                    "seccional",
+                    "subsecao",
+                    "categoria"
+                ]
+            }
+        }
+    ]
+    ```
+
+2. `debug_outputs`: contém artefatos auxiliares para depuração, incluindo a representação matricial dos PDFs e um JSON com o estado final da cache de heurísticas aprendidas durante o processamento.
 
 ## 🧩 Melhorias reconhecidas
 
@@ -232,3 +342,4 @@ Como o algoritmo é apenas um protótipo, é importante pontuar limitações/mel
    2. Efetividade reduzida da heurística: a heurística depende do acúmulo progressivo de informações — quanto mais documentos são processados, melhor ela fica. Entretanto, com múltiplas threads, documentos que são processados logo no início podem não se beneficiar da heurística simplesmente porque ela ainda não foi atualizada por outras threads. 
    
         Uma possível solução seria manter o processamento sequencial durante um determinado período ou até que um número mínimo de documentos tenha sido processado.
+3. A heurística está fortemente ligada à identificação de padrões de layout presentes nos documentos. Embora seja capaz de armazenar e reconhecer múltiplas variações desses padrões, seu desempenho depende diretamente da recorrência entre os PDFs de uma mesma label. Quanto mais estáveis forem esses padrões, maior tende a ser a cobertura heurística.

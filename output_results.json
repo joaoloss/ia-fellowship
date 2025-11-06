@@ -1,6 +1,5 @@
 [
     {
-        "pdf_path": "oab_1.pdf",
         "extraction_schema": {
             "nome": "JOANA D'ARC",
             "inscricao": "101943",
@@ -12,19 +11,20 @@
             "situacao": "SITUAÇÃO REGULAR"
         },
         "metadata": {
+            "pdf_path": "oab_1.pdf",
+            "label": "carteira_oab",
             "version_used": "native_pdf",
-            "latency_seconds": 9.52,
-            "total_tokens": 1619,
-            "input_tokens": 1516,
+            "latency_seconds": 7.29,
+            "total_tokens": 1634,
+            "input_tokens": 1531,
             "output_tokens": 103,
             "cached_tokens": 0,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "5.850000e-04"
-        },
-        "heuristic_hits": []
+            "estimated_cost_usd": "5.887500e-04",
+            "heuristic_hits": []
+        }
     },
     {
-        "pdf_path": "oab_2.pdf",
         "extraction_schema": {
             "nome": "luis filipe araujo amaral",
             "inscricao": "101943",
@@ -35,25 +35,26 @@
             "situacao": "situação regular"
         },
         "metadata": {
+            "pdf_path": "oab_2.pdf",
+            "label": "carteira_oab",
             "version_used": "text_based",
-            "latency_seconds": 2.01,
-            "total_tokens": 571,
-            "input_tokens": 522,
+            "latency_seconds": 2.3,
+            "total_tokens": 611,
+            "input_tokens": 562,
             "output_tokens": 49,
             "cached_tokens": 0,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "2.285000e-04"
-        },
-        "heuristic_hits": [
-            "nome",
-            "inscricao",
-            "seccional",
-            "subsecao",
-            "categoria"
-        ]
+            "estimated_cost_usd": "2.385000e-04",
+            "heuristic_hits": [
+                "nome",
+                "inscricao",
+                "seccional",
+                "subsecao",
+                "categoria"
+            ]
+        }
     },
     {
-        "pdf_path": "oab_3.pdf",
         "extraction_schema": {
             "nome": "son goku",
             "inscricao": "101943",
@@ -64,26 +65,27 @@
             "situacao": "situação regular"
         },
         "metadata": {
+            "pdf_path": "oab_3.pdf",
+            "label": "carteira_oab",
             "version_used": "text_based",
-            "latency_seconds": 1.67,
-            "total_tokens": 547,
-            "input_tokens": 507,
+            "latency_seconds": 2.36,
+            "total_tokens": 587,
+            "input_tokens": 547,
             "output_tokens": 40,
             "cached_tokens": 0,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "2.067500e-04"
-        },
-        "heuristic_hits": [
-            "nome",
-            "inscricao",
-            "seccional",
-            "categoria"
-        ]
+            "estimated_cost_usd": "2.167500e-04",
+            "heuristic_hits": [
+                "nome",
+                "inscricao",
+                "seccional",
+                "categoria"
+            ]
+        }
     },
     {
-        "pdf_path": "tela_sistema_1.pdf",
         "extraction_schema": {
-            "data_base": "03/09/2025",
+            "data_base": "05/09/2025",
             "data_vencimento": "12/10/2025",
             "quantidade_parcelas": null,
             "produto": null,
@@ -92,19 +94,20 @@
             "tipo_de_sistema": null
         },
         "metadata": {
+            "pdf_path": "tela_sistema_1.pdf",
+            "label": "tela_sistema",
             "version_used": "native_pdf",
-            "latency_seconds": 3.21,
-            "total_tokens": 1574,
-            "input_tokens": 1507,
+            "latency_seconds": 3.89,
+            "total_tokens": 1589,
+            "input_tokens": 1522,
             "output_tokens": 67,
             "cached_tokens": 0,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "5.107500e-04"
-        },
-        "heuristic_hits": []
+            "estimated_cost_usd": "5.145000e-04",
+            "heuristic_hits": []
+        }
     },
     {
-        "pdf_path": "tela_sistema_2.pdf",
         "extraction_schema": {
             "pesquisa_por": "CLIENTE",
             "pesquisa_tipo": "CPF",
@@ -113,34 +116,37 @@
             "cidade": "Mozarlândia"
         },
         "metadata": {
+            "pdf_path": "tela_sistema_2.pdf",
+            "label": "tela_sistema",
             "version_used": "native_pdf",
-            "latency_seconds": 2.69,
-            "total_tokens": 1504,
-            "input_tokens": 1456,
+            "latency_seconds": 2.54,
+            "total_tokens": 1519,
+            "input_tokens": 1471,
             "output_tokens": 48,
-            "cached_tokens": 0,
+            "cached_tokens": 1280,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "4.600000e-04"
-        },
-        "heuristic_hits": []
+            "estimated_cost_usd": "4.637500e-04",
+            "heuristic_hits": []
+        }
     },
     {
-        "pdf_path": "tela_sistema_3.pdf",
         "extraction_schema": {
             "data_referencia": "04/02/2021",
             "selecao_de_parcelas": null,
             "total_de_parcelas": "96"
         },
         "metadata": {
+            "pdf_path": "tela_sistema_3.pdf",
+            "label": "tela_sistema",
             "version_used": "native_pdf",
-            "latency_seconds": 3.32,
-            "total_tokens": 1540,
-            "input_tokens": 1499,
+            "latency_seconds": 3.59,
+            "total_tokens": 1555,
+            "input_tokens": 1514,
             "output_tokens": 41,
-            "cached_tokens": 0,
+            "cached_tokens": 1280,
             "reasoning_tokens": 0,
-            "estimated_cost_usd": "4.567500e-04"
-        },
-        "heuristic_hits": []
+            "estimated_cost_usd": "4.605000e-04",
+            "heuristic_hits": []
+        }
     }
 ]

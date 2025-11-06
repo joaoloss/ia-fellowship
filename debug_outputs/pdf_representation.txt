@@ -228,3 +228,141 @@ Row 8: situação regular
 
 ================================================================================
 
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
+Row 1: luis filipe araujo amaral
+Row 2: inscrição | seccional | subseção
+Row 3: 101943 | pr | conselho seccional - paraná
+Row 4: suplementar
+Row 5: endereço profissional
+Row 6: avenida paulista, nº 2300 andar pilotis, bela vista são paulo - sp
+Row 7: 01310300
+Row 8: telefone profissional
+Row 9: situação regular
+
+================================================================================
+
+Row 1: son goku
+Row 2: inscrição | seccional | subseção conselho seccional - paraná
+Row 3: 101943 | pr
+Row 4: suplementar
+Row 5: endereco profissional
+Row 6: k
+Row 7: telefone profissional
+Row 8: situação regular
+
+================================================================================
+
