@@ -14,7 +14,7 @@
   - [🔢 Entrada e saída](#-entrada-e-saída)
     - [Entrada](#entrada)
     - [Saída](#saída)
-  - [🧩 Melhorias reconhecidas](#-melhorias-reconhecidas)
+  - [🧩 Melhorias e limitações reconhecidas](#-melhorias-e-limitações-reconhecidas)
 
 
 Esse repositório contém um projeto desenvolvido durante o processo seletivo para o fellowship promovido pela empresa [Enter](https://www.getenter.ai/).
@@ -27,7 +27,7 @@ O desafio proposto gira em torno do problema de extração eficiente de pares ch
 
 Por questões de familiaridade e agilidade no desenvolvimento/prototipação, optou-se pela linguagem Python.
 
-Além disso, como modelo de linguagem (LLM), utilizou-se o [gpt-5-mini](https://platform.openai.com/docs/models/gpt-5-mini) da OpenAI.
+Além disso, como modelo de linguagem (LLM), utilizou-se o [gpt-5-mini](https://platform.openai.com/docs/models/gpt-5-mini), da OpenAI.
 
 ## 💡 Estratégia
 
@@ -64,7 +64,7 @@ Sabendo que a interação com um LLM seria uma peça fundamental e inegociável,
         ```
         Apesar de modelos de linguagem serem, em essência, orientados a texto e não apresentarem desempenho ideal em dados tabulares, observou-se uma melhora significativa nos resultados quando as informações foram estruturadas em tabela/matriz, em comparação ao uso do texto corrido sozinho. Obviamente isso acabou resultando em um pequeno aumento de latência e tokens consumidos.
     
-    **Resultados**: enviar o arquivo PDF para o LLM (via base64), em vez do texto extraído do PDF no prompt, resultou em aproximadamente **2x mais tempo**, **2x mais tokens**. Contudo, durante os experimentos, percebeu-se que os resultados foram um pouco inferiores e menos consistentes. Exemplos:
+    **Resultados**: enviar o arquivo PDF para o LLM (via base64), em vez do texto extraído do PDF no prompt, resultou em aproximadamente **2x mais tempo** e **2x mais tokens**. Contudo, durante os experimentos, percebeu-se que, quando usando apenas texto, os resultados foram um pouco inferiores e menos consistentes. Exemplos:
     - Para a chave `"situacao"` dentro de `"label": "carteira_oab"`: em alguns casos, o modelo retornou apenas `"regular"`, enquanto em outros retornou `"situação regular"`. Além disso, para a chave `"endereco_profissional"` dentro da mesma categoria: partes finais do endereço foram ocasionalmente omitidas — como, por exemplo, o CEP.
 
     Os tópicos a seguir apresentam a abordagem adotada para lidar com esses problemas.
@@ -140,7 +140,7 @@ A cache é um dicionário cujos valores são preenchidos de forma adaptativa ao 
     }
     ```
 
-**Antes de realizar a chamada ao modelo** (gargalo do sistema em termos de custo e tempo) executa-se um pré-processamento por meio do método `heuristic_preprocessing()`. Esse método utiliza a cache de heurísticas já aprendidas para tentar preencher automaticamente parte do esquema de extração (`request_schema`) antes da inferência. Para cada chave do esquema, o método verifica se existem heurísticas previamente armazenadas para a label do documento atual e, se existir, tenta recuperar o valor correspondente consultando diretamente a matriz do PDF. Os valores recuperados são armazenados em um dicionário parcial (`partial_result`), que representa os campos resolvidos apenas por heurística, sem consulta ao modelo. Durante esse processo, o método também ajusta contadores internos e estatísticas de uso das heurísticas, reforçando aquelas que se mostram mais eficazes.
+**Antes de realizar a chamada ao modelo** executa-se um pré-processamento por meio do método `heuristic_preprocessing()`. Esse método utiliza a cache de heurísticas já aprendidas para tentar preencher automaticamente parte do esquema de extração (`request_schema`) antes da inferência. Para cada chave do esquema, o método verifica se existem heurísticas previamente armazenadas para a label do documento atual e, se existir, tenta recuperar o valor correspondente consultando diretamente a matriz do PDF. Os valores recuperados são armazenados em um dicionário parcial (`partial_result`), que representa os campos resolvidos apenas por heurística, sem consulta ao modelo. Durante esse processo, o método também ajusta contadores internos e estatísticas de uso das heurísticas, reforçando aquelas que se mostram mais eficazes.
 
 **Após a inferência do modelo**, o método `heuristic_update()` é responsável por atualizar a cache com os novos resultados obtidos. Ele registra o valor retornado, determina seu tipo, coleta exemplos representativos e identifica a posição do valor no PDF, transformando esse conhecimento em novas heurísticas. Se uma heurística existente já corresponder ao valor observado, sua frequência de acerto é incrementada; caso contrário, uma nova heurística é adicionada. O conjunto é então reordenado para priorizar heurísticas mais consistentes, mantendo apenas as mais relevantes para uso futuro.
 
@@ -295,7 +295,7 @@ Os arquivos PDF referenciados pelo JSON de entrada devem estar na pasta `files`.
 
 ### Saída
 
-1. `output_results.json`: arquivo contendo o resultado do processamento juntamente com dados estatísticos.
+1. `results_<time-stamp>.json`: arquivo contendo o resultado do processamento juntamente com dados estatísticos.
 
     Exemplo:
     ```json
@@ -335,7 +335,7 @@ Os arquivos PDF referenciados pelo JSON de entrada devem estar na pasta `files`.
 
 2. `debug_outputs/`: contém artefatos auxiliares para depuração, incluindo a representação matricial dos PDFs e um JSON com o estado final da cache de heurísticas aprendidas durante o processamento.
 
-## 🧩 Melhorias reconhecidas
+## 🧩 Melhorias e limitações reconhecidas
 
 Como o algoritmo é apenas um protótipo, é importante pontuar limitações/melhorias reconhecidas:
 
@@ -346,3 +346,5 @@ Como o algoritmo é apenas um protótipo, é importante pontuar limitações/mel
    
         Uma possível solução seria manter o processamento sequencial durante um determinado período ou até que um número mínimo de documentos tenha sido processado.
 3. A heurística está fortemente ligada à identificação de padrões de layout presentes nos documentos. Embora seja capaz de armazenar e reconhecer múltiplas variações desses padrões, seu desempenho depende diretamente da recorrência entre os PDFs de uma mesma label. Quanto mais estáveis forem esses padrões, maior tende a ser a cobertura heurística.
+4. Como a heurística é adaptativa (aprendizado acumulativo) para extrações isoladas o resultado não é otimizado.
+5. O tratamento de erros e inconsistências ainda pode ser aprimorado, especialmente em cenários não previstos ou de entrada inválida.

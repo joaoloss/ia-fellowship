@@ -15,6 +15,7 @@ from tqdm import tqdm
 import pandas as pd
 import plotly.express as px
 from glob import glob
+from datetime import datetime
 
 
 type_resolver = TypeResolver()
@@ -34,18 +35,35 @@ def logging_config():
 logging_config()
 logger = logging.getLogger("my_logger")
 
-INPUT_DIR = Path("files")
-INPUT_JSON = "dataset.json"
-OUTPUT_JSON = "output_results.json"
+INPUT_DIR = Path("files") # Where PDFs are stored
 
-def run_processing(input_json_file: str):
+def run_processing(input_json_path: str):
+    if not input_json_path or not os.path.isfile(input_json_path):
+        logger.error(f"Input JSON file '{input_json_path}' does not exist.")
+        raise Exception("JSON inválido.")
+    
     input_files = os.listdir(INPUT_DIR)
+    if len(input_files) == 0:
+        logger.error(f"No PDF files found in input directory '{INPUT_DIR}'.")
+        raise Exception(f"Nenhum PDF encontrado em {INPUT_DIR}.")
+
+    try:
+        with open(input_json_path) as f:
+            input_json = json.load(f)
+    except json.JSONDecodeError:
+        logger.error(f"Couldn't load {input_json_path}.")
+        raise Exception(f"Erro ao ler o JSON de entrada '{input_json_path}'.")
+    
+    total = len(input_json)
+    processed = 0
+    if total == 0:
+        logger.error(f"No data to process in JSON {input_json_path}.")
+        raise Exception(f"Nenhum dado a ser processado no JSON {input_json_path}.")
+
     result_json = list()
-
-    with open(input_json_file) as f:
-        input_json = json.load(f)
-
-    with open(OUTPUT_JSON, "w") as f:
+    time_stamp = datetime.now().strftime("%y-%m-%d_%H-%M-%S")
+    output_json_path = f"results_{time_stamp}.json"
+    with open(output_json_path, "w") as f:
         f.write("[]")
 
     TEXT_BASED_VERSION = 1
@@ -53,8 +71,6 @@ def run_processing(input_json_file: str):
     disable_heuristic = False
     extract_form = NATIVE_PDF_VERSION # Start with native PDF extraction
 
-    total = len(input_json)
-    processed = 0
 
     for item in input_json:
         yield processed, total # Streamlit progress bar update
@@ -138,7 +154,7 @@ def run_processing(input_json_file: str):
         disable_heuristic = False
         extract_form = TEXT_BASED_VERSION
 
-        with open(OUTPUT_JSON, "w") as f:
+        with open(output_json_path, "w") as f:
             json.dump(result_json, f, indent=4, ensure_ascii=False)
 
     os.makedirs("debug_outputs", exist_ok=True)
@@ -154,65 +170,54 @@ def streamlit_run():
     st.write(f"Para o correto funcionamento, certifique-se de que os arquivos PDF referenciados pelo JSON de entrada estejam na pasta `{curr_dir / INPUT_DIR}`.")
 
     default_path = os.path.join(curr_dir, "*.json")
-
-    st.header("📥 Selecionar Arquivo de Entrada")
-
-    # --- Opção 1: Selecionar arquivo já existente ---
     existing_files = glob(default_path)
 
-    option = st.radio(
-        "Como deseja fornecer o arquivo?",
-        ["Selecionar arquivo existente", "Fazer upload"]
-    )
+    st.header("📥 Selecionar Arquivo de Entrada")   
 
-    if option == "Selecionar arquivo existente":
-        if not existing_files:
-            st.warning("Nenhum arquivo JSON encontrado na pasta atual.")
-            st.stop()
+    st.write(f"Apenas arquivos em `{curr_dir}` serão considerados.")
+    input_json_path = st.selectbox("Escolha um arquivo:", existing_files,
+                                accept_new_options=False,
+                                index=None,
+                                placeholder="Selecione um arquivo...")
 
-        input_file = st.selectbox("Escolha um arquivo:", existing_files)
-
-        with open(input_file, "r") as f:
-            output_data = json.load(f)
-        st.success(f"✅ Arquivo carregado: {os.path.basename(input_file)}")
-
+    if input_json_path is None or not os.path.isfile(input_json_path):
+        st.info("Por favor, selecione um arquivo JSON válido para continuar.")
     else:
-        # --- Opção 2: Upload ---
-        uploaded_file = st.file_uploader("Envie um arquivo JSON:", type=["json"])
+        st.success(f"✅ Arquivo carregado: {os.path.basename(input_json_path)}")
 
-        if uploaded_file is None:
-            st.info("Aguardando upload...")
-            st.stop()
+        if st.button("Run"):
+            progress = st.progress(0)
+            status_text = st.empty()
 
-        # Save uploaded file
-        global INPUT_JSON
-        INPUT_JSON = uploaded_file.name
-        input_file = curr_dir / INPUT_JSON
-        with open(input_file, "wb") as f:
-            f.write(uploaded_file.getbuffer())
+            try:
+                for processed, total in run_processing(input_json_path):
+                    percent = int((processed / total) * 100)
+                    progress.progress(percent)
+                    status_text.write(f"Processando {processed}/{total} PDFs...")   
+            except Exception as e:
+                st.error(f"Ocorreu um erro durante o processamento. \n\n Erro: {e}")
 
-        st.success(f"✅ Upload concluído: {uploaded_file.name}")
-
-    if st.button("Run"):
-        progress = st.progress(0)
-        status_text = st.empty()
-
-        try:
-            for processed, total in run_processing(input_file):
-                percent = int((processed / total) * 100)
-                progress.progress(percent)
-                status_text.write(f"Processando {processed}/{total} PDFs...")   
-        except Exception as e:
-            st.error(f"Ocorreu um erro durante o processamento. Certifique-se de que o arquivo JSON está correto, contendo todos os campos necessários.")
-
-        status_text.write("✅ Processamento concluído!")
-        progress.progress(100)
+            status_text.write("✅ Processamento concluído!")
+            progress.progress(100)
+    
     if st.button("Show stats"):
+        # Take the latest results file
+        results_files = sorted(glob("results_*.json"), reverse=True)
+        if not results_files:
+            st.error("Nenhum arquivo de resultados encontrado. Execute o processamento primeiro.")
+            return
+        results_json = results_files[0]
+        st.write(f"Carregando resultados de: `{results_json}`")
+
         try:
-            with open(OUTPUT_JSON) as f:
+            with open(results_json) as f:
                 output_data = json.load(f)
         except FileNotFoundError:
-            st.error(f"Arquivo {OUTPUT_JSON} não encontrado. Execute o processamento primeiro.")
+            st.error("Arquivo com os resultados e estatísticas não encontrado. Execute o processamento primeiro.")
+            return
+
+        if len(output_data) == 0:
+            st.error("Arquivo com os resultados e estatísticas vazio.")
             return
 
         stats = []
@@ -220,10 +225,8 @@ def streamlit_run():
             d = {"num_keys_extracted": len(item["extraction_schema"])}
             d.update(item["metadata"])
             d["estimated_cost_usd"] = float(d["estimated_cost_usd"])
-            d["heuristic_hits_percent"] = (
-                len(item.get("heuristic_hits", [])) / d["num_keys_extracted"] * 100
-                if d["num_keys_extracted"] > 0 else 0
-            )
+            d["heuristic_hits_percent"] = (len(d["heuristic_hits"]) / d["num_keys_extracted"]) * 100 if d["num_keys_extracted"] > 0 else 0
+            d.pop("heuristic_hits")  # Remove detailed heuristic hits for stats 
             stats.append(d)
 
         df = pd.DataFrame(stats)
@@ -350,7 +353,7 @@ def main():
     args = parser.parse_args()
 
     if args.streamlit:
-        logger.setLevel(logging.ERROR)
+        logger.setLevel(100)
         streamlit_run()
     elif args.verbose == "tqdm":
         logger.setLevel(100)  # Suppress logging when using tqdm

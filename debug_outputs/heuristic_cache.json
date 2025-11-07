@@ -61,20 +61,11 @@
                     ],
                     "match_count": 2,
                     "mean_length": 27
-                },
-                {
-                    "position": [
-                        1,
-                        2
-                    ],
-                    "match_count": 1,
-                    "mean_length": 36
                 }
             ],
             "type": "string",
             "example_values": [
-                "conselho seccional - paraná",
-                "subseção conselho seccional - paraná"
+                "conselho seccional - paraná"
             ]
         },
         "categoria": {
@@ -204,6 +195,14 @@
             "type": "date",
             "example_values": [
                 "04/02/2021"
+            ]
+        },
+        "selecao_de_parcelas": {
+            "count": 1,
+            "heuristics": [],
+            "type": "string",
+            "example_values": [
+                "vencimento"
             ]
         },
         "total_de_parcelas": {
