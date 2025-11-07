@@ -266,7 +266,7 @@ Essa **abordagem híbrida** tenta explorar o melhor dos dois mundos: prioriza cu
 
         Em seguida acesse `http://localhost:8501` no navegador.
 
-    Ao executar o programa via interface gráfica (**UI**), além do processamento padrão, a aplicação apresenta **estatísticas e visualizações interativas** relacionadas ao processo de extração — incluindo tempo de execução, custo estimado e desempenho da heurística.
+    Ao executar o programa via interface gráfica (**UI**), além do processamento padrão, a aplicação apresenta **estatísticas e visualizações interativas** relacionadas ao processo de extração mais recente — incluindo tempo de execução, custo estimado e desempenho da heurística.
 
 ## 🔢 Entrada e saída
 

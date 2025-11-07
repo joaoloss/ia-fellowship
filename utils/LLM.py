@@ -27,12 +27,13 @@ Alguns campos do YAML possuem exemplos de valores extraídos previamente. Utiliz
 
 # Instruções de Extração
 ## PRECISÃO E COMPLETUDE
-- Extraia apenas informações explicitamente presentes no PDF
-- Não infira ou invente valores não presentes
 - Utiliza as descrições dos campos no YAML para guiar a extração, em alguns casos os valores possíveis para um campo estão explicitamente descritos no YAML, não ignore essas descrições
 - Utilize os exemplos fornecidos no YAML para identificar padrões, mas não copie valores diretamente a menos que estejam presentes no PDF
 - Não ignore informações relevantes que correspondam aos campos
-- Preencha uma chave **somente se** o nome da chave ou uma abreviação **claramente correspondente** estiver presente no texto do PDF. Se não estiver explicitamente presente ou reconhecível, não use termos similares para preencher a chave. Na dúvida, prefira deixar o campo como null
+- Preencha uma chave somente se:
+1. O nome exato da chave ou uma abreviação explícita aparecer no texto; ou
+2. Houver uma referência clara e inequívoca ao conceito representado por essa chave (ex.: sinonímias padronizadas já conhecidas e amplamente aceitas).
+- Se houver qualquer dúvida, deixe a chave vazia. Não tente inferir, deduzir ou adivinhar.- Na dúvida, prefira deixar o campo como null
 - Para campos ausentes, use `null`, não use strings vazias
 
 # YAML de requisição
@@ -50,11 +51,13 @@ Sua tarefa é retornar um json, e somente um json, preenchendo os campos solicit
 
 # Instruções de Extração
 ## PRECISÃO E COMPLETUDE
-- Extraia apenas informações explicitamente presentes no PDF
-- Não infira ou invente valores não presentes
 - Utiliza as descrições dos campos no YAML para guiar a extração, em alguns casos os valores possíveis para um campo estão explicitamente descritos no YAML, não ignore essas descrições
+- Extraia apenas informações explicitamente presentes no PDF
 - Não ignore informações relevantes que correspondam aos campos
-- Preencha uma chave **somente se** o nome da chave ou uma abreviação **claramente correspondente** estiver presente no texto do PDF. Se não estiver explicitamente presente ou reconhecível, não use termos similares para preencher a chave. Na dúvida, prefira deixar o campo como null
+- Preencha uma chave somente se:
+1. O nome exato da chave ou uma abreviação explícita aparecer no texto; ou
+2. Houver uma referência clara e inequívoca ao conceito representado por essa chave (ex.: sinonímias padronizadas já conhecidas e amplamente aceitas).
+- Se houver qualquer dúvida, deixe a chave vazia. Não tente inferir, deduzir ou adivinhar.
 - Para campos ausentes, use `null`, não use strings vazias
 
 # YAML de requisição

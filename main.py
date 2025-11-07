@@ -248,7 +248,7 @@ def streamlit_run():
         st.header("📊 Análises Gerais")
         st.dataframe(df)
 
-        tab1, tab2, tab3= st.tabs(["Tokens x Latência", "Performance Heurística x Latência", "Performance Heurística x Tokens"])
+        tab1, tab2, tab3, tab4, tab5 = st.tabs(["Tokens x Latência", "Performance Heurística x Latência", "Performance Heurística x Tokens", "Versão Prompt x Tokens", "Versão Prompt x Latência"])
 
         with tab1:
             fig = px.scatter(
@@ -278,6 +278,24 @@ def streamlit_run():
                 color="label",
                 hover_data=["label", "pdf_path", "num_keys_extracted", "estimated_cost_usd", "latency_seconds"],
                 title="Relação entre Performance da Heurística e Tokens (por PDF)",
+            )
+            st.plotly_chart(fig)
+        with tab4:
+            fig = px.box(
+                df,
+                x="version_used",
+                y="total_tokens",
+                points="all",
+                title="Distribuição de Tokens por Versão de Prompt Usada (ver README)",
+            )
+            st.plotly_chart(fig)
+        with tab5:
+            fig = px.box(
+                df,
+                x="version_used",
+                y="latency_seconds",
+                points="all",
+                title="Distribuição de Latência por Versão de Prompt Usada (ver README)",
             )
             st.plotly_chart(fig)
 
