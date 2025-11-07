@@ -236,7 +236,6 @@ Essa **abordagem híbrida** tenta explorar o melhor dos dois mundos: prioriza cu
 
 3. Inicialize o ambiente com [uv](https://docs.astral.sh/uv/)
     ```bash
-    uv init
     uv sync
     ```
 
