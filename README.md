@@ -225,7 +225,7 @@ Essa **abordagem híbrida** tenta explorar o melhor dos dois mundos: prioriza cu
 
 1. Clone o repositório
     ```bash
-    https://github.com/joaoloss/ia-fellowship.git
+    git clone https://github.com/joaoloss/ia-fellowship.git
     cd ia-fellowship
     ```
 
