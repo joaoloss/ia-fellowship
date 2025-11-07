@@ -203,7 +203,7 @@ def streamlit_run():
     if st.button("Show stats"):
         # Take the latest results file
         results_files = sorted(glob("results_*.json"), reverse=True)
-        if not results_files:
+        if len(results_files) == 0:
             st.error("Nenhum arquivo de resultados encontrado. Execute o processamento primeiro.")
             return
         results_json = results_files[0]
@@ -211,17 +211,17 @@ def streamlit_run():
 
         try:
             with open(results_json) as f:
-                output_data = json.load(f)
-        except FileNotFoundError:
-            st.error("Arquivo com os resultados e estatísticas não encontrado. Execute o processamento primeiro.")
+                results_data = json.load(f)
+        except Exception as e:
+            st.error(f"Erro ao carregar resultados: {e}")
             return
 
-        if len(output_data) == 0:
+        if len(results_data) == 0:
             st.error("Arquivo com os resultados e estatísticas vazio.")
             return
 
         stats = []
-        for item in output_data:
+        for item in results_data:
             d = {"num_keys_extracted": len(item["extraction_schema"])}
             d.update(item["metadata"])
             d["estimated_cost_usd"] = float(d["estimated_cost_usd"])
